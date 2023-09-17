@@ -3,3 +3,4 @@
 
 bun run precommit --config .lintstagedrc.js
 bun run markuplint
+bun run test-storybook

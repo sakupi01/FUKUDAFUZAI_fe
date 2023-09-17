@@ -10,7 +10,11 @@
     "prepare": "husky install",
     "markuplint": "markuplint \"./src/**/*.{jsx,tsx}\"",
     "precommit": "lint-staged",
-    "commitlint": "commitlint -e $GIT_PARAMS"
+    "commitlint": "commitlint -e $GIT_PARAMS",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test-storybook": "test-storybook",
+    "chromatic": "npx chromatic --project-token=chpt_50030511fdbb5c4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -36,15 +40,29 @@
     "@commitlint/config-conventional": "^17.7.0",
     "@markuplint/jsx-parser": "^3.9.1",
     "@markuplint/react-spec": "^3.10.1",
+    "@storybook/addon-essentials": "^7.4.2",
+    "@storybook/addon-interactions": "^7.4.2",
+    "@storybook/addon-links": "^7.4.2",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.4.2",
+    "@storybook/nextjs": "^7.4.2",
+    "@storybook/react": "^7.4.2",
+    "@storybook/test-runner": "^0.13.0",
+    "@storybook/testing-library": "^0.2.1",
     "@tsconfig/recommended": "^1.0.3",
+    "chromatic": "^7.1.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-storybook": "^0.6.13",
     "eslint-plugin-unused-imports": "^3.0.0",
     "husky": "^8.0.3",
     "hygen": "^6.2.11",
-    "markuplint": "^3.12.1"
+    "markuplint": "^3.12.1",
+    "storybook": "^7.4.2"
   },
   "volta": {
     "node": "20.6.1",
     "npm": "10.1.0"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "fukudafuzai_fe@0.1.0"
 }
