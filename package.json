@@ -3,23 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "prepare": "husky install",
-    "markuplint": "markuplint \"./src/**/*.{jsx,tsx}\"",
-    "precommit": "lint-staged",
-    "commitlint": "commitlint -e $GIT_PARAMS",
+    "check:lint": "next lint",
+    "check:typecheck": "tsc --noEmit",
+    "check:markuplint": "markuplint \"./src/**/*.{jsx,tsx}\"",
+    "check:format": "prettier \"./src/**/*.ts\" \"./src/**/*.tsx\" --check",
+    "format": "prettier \"./src/**/*.{ts,tsx}\" --write",
+    "test:storybook": "test-storybook --url http://localhost:6006",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "test-storybook": "test-storybook",
-    "chromatic": "npx chromatic --project-token=chpt_50030511fdbb5c4"
+    "storybook:build": "storybook build",
+    "storybook:serve": "npx http-server storybook-static -a localhost -p 6006 -s",
+    "storybook:test": "npx wait-on http://localhost:6006 && npm run test:storybook",
+    "storybook:ci": "npx concurrently -k -s first \"npm run storybook:serve\" \"npm run storybook:test\"",
+    "chromatic": "chromatic --exit-zero-on-changes",
+    "precommit": "lint-staged",
+    "commitlint": "commitlint -e $GIT_PARAMS"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "lint --fix",
-      "prettier --write --ignore-unknown src/"
+      "check:lint --fix",
+      "check:markuplint",
+      "check:typecheck",
+      "format"
     ]
   },
   "dependencies": {

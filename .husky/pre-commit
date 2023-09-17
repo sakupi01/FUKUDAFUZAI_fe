@@ -2,5 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 bun run precommit --config .lintstagedrc.js
-bun run markuplint
-bun run test-storybook
+bun run storybook:test

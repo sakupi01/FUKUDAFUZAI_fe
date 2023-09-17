@@ -1,0 +1,90 @@
+# .github/workflows/test.yaml
+name: Test UI
+
+on: push
+env:
+  REG_NOTIFY_CLIENT_ID: ${{ secrets.REG_NOTIFY_CLIENT_ID }}
+  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+
+jobs:
+  install-dependencies: # This job is for installing dependencies.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: node_modules_cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        if: steps.node_modules_cache.outputs.cache-hit != 'true'
+        run: npm ci
+  check: # This job is for checking the code style and type errors.
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Restore node_modules
+        id: node_modules_cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Run Type Check
+        run: npm run check:typecheck
+      - name: Run Lint
+        run: npm run check:lint
+  build-storybook: # This job is for building Storybook.
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Restore node_modules
+        id: node_modules_cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Cache Storybook
+        uses: actions/cache@v3
+        id: storybook_cache
+        with:
+          path: storybook-static
+          key: ${{ runner.os }}-${{ github.sha }}
+      - name: Build Storybook
+        if: steps.storybook_cache.outputs.cache-hit != 'true'
+        run: npm run storybook:build --quiet
+  test-storybook: # This job is for testing in Storybook.
+    needs: build-storybook
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Restore node_modules
+        id: node_modules_cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Restore Storybook
+        id: storybook_cache
+        uses: actions/cache@v3
+        with:
+          path: storybook-static
+          key: ${{ runner.os }}-${{ github.sha }}
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+      - name: Run Storybook Tests
+        run: npm run storybook:ci

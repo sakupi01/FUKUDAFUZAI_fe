@@ -1,27 +1,26 @@
-import { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/testing-library'
 
-import { Test } from './Test';
+import { Test } from './Test'
 
-export type TestProps = {};
+import type { Meta, StoryObj } from '@storybook/react'
+
+export type TestProps = {}
 
 const meta = {
-  title: "Test",
+  title: 'Test',
   component: Test,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
-  argTypes: {
-  },
-} satisfies Meta<typeof Test>;
-
+  argTypes: {},
+} satisfies Meta<typeof Test>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+    const canvas = within(canvasElement)
   },
-};
+}
