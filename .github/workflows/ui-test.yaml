@@ -11,12 +11,21 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Cache styled-system
+        uses: actions/cache@v3
+        id: styled-system_cache
+        with:
+          path: styled-system
+          key: ${{ runner.os }}-${{ hashFiles('styled-system') }}
       - name: Cache node_modules
         uses: actions/cache@v3
         id: node_modules_cache
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Pre dependencies installation
+        if: steps.styled-system_cache.outputs.cache-hit != 'true'
+        run: npm run prepare
       - name: Install dependencies
         if: steps.node_modules_cache.outputs.cache-hit != 'true'
         run: npm ci
@@ -28,6 +37,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Restore styled-system
+        id: styled-system_cache
+        uses: actions/cache@v3
+        with:
+          path: styled-system
+          key: ${{ runner.os }}-${{ hashFiles('styled-system') }}
       - name: Restore node_modules
         id: node_modules_cache
         uses: actions/cache@v3
@@ -46,6 +61,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Restore styled-system
+        id: styled-system_cache
+        uses: actions/cache@v3
+        with:
+          path: styled-system
+          key: ${{ runner.os }}-${{ hashFiles('styled-system') }}
       - name: Restore node_modules
         id: node_modules_cache
         uses: actions/cache@v3
@@ -69,6 +90,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Restore styled-system
+        id: styled-system_cache
+        uses: actions/cache@v3
+        with:
+          path: styled-system
+          key: ${{ runner.os }}-${{ hashFiles('styled-system') }}
       - name: Restore node_modules
         id: node_modules_cache
         uses: actions/cache@v3

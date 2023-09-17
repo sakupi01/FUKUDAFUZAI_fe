@@ -18,7 +18,7 @@
     "storybook:serve": "npx http-server storybook-static -a localhost -p 6006 -s",
     "storybook:test": "npx wait-on http://localhost:6006 && npm run test:storybook",
     "storybook:ci": "npx concurrently -k -s first \"npm run storybook:serve\" \"npm run storybook:test\"",
-    "chromatic": "chromatic --exit-zero-on-changes -b \"storybook:build\"",
+    "chromatic": "chromatic --exit-zero-on-changes ---build-script-name \"storybook:build\"",
     "precommit": "lint-staged",
     "commitlint": "commitlint -e $GIT_PARAMS"
   },

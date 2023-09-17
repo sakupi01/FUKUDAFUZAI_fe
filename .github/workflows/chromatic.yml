@@ -36,3 +36,5 @@ jobs:
           onlyChanged: true
           # 👇Runs Chromatic with the option to compress the build output.
           zip: true
+          # 👇Runs with custom build command.
+          buildScriptName: 'storybook:build'
