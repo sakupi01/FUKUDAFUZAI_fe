@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
+    "markuplint": "markuplint \"./src/**/*.{jsx,tsx}\"",
     "precommit": "lint-staged",
     "commitlint": "commitlint -e $GIT_PARAMS"
   },
@@ -33,9 +34,12 @@
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
+    "@markuplint/jsx-parser": "^3.9.1",
+    "@markuplint/react-spec": "^3.10.1",
     "@tsconfig/recommended": "^1.0.3",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "markuplint": "^3.12.1"
   }
 }
