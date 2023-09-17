@@ -2,9 +2,6 @@
 name: Test UI
 
 on: push
-env:
-  REG_NOTIFY_CLIENT_ID: ${{ secrets.REG_NOTIFY_CLIENT_ID }}
-  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
 
 jobs:
   install-dependencies: # This job is for installing dependencies.
@@ -24,7 +21,7 @@ jobs:
         if: steps.node_modules_cache.outputs.cache-hit != 'true'
         run: npm ci
   check: # This job is for checking the code style and type errors.
-    needs: install
+    needs: install-dependencies
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -38,11 +35,11 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - name: Run Type Check
-        run: npm run check:typecheck
+        run: npm run check:typecheck # check ts compile error
       - name: Run Lint
         run: npm run check:lint
   build-storybook: # This job is for building Storybook.
-    needs: install
+    needs: install-dependencies
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -86,5 +83,9 @@ jobs:
           key: ${{ runner.os }}-${{ github.sha }}
       - name: Install Playwright
         run: npx playwright install --with-deps chromium
+      # powered by Jest and Playwright
+      # For those without a play function: it verifies whether the story renders without any errors.
+      # For those with a play function: it also checks for errors in the play function and that all assertions passed.
+      # (Better to do a11y test if it's possible...)
       - name: Run Storybook Tests
         run: npm run storybook:ci
