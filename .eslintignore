@@ -1,0 +1,14 @@
+# config fiels
+.eslintrc.json
+.prettierrc.json
+next.config.js
+tsconfig.json
+*.config.*
+
+# build files
+build/
+.next/
+styled-system/
+
+_templates/
+setup.js
