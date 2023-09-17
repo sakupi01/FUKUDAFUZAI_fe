@@ -36,3 +36,6 @@ next-env.d.ts
 
 # log
 build-storybook.log
+
+# panda
+styled-system/
