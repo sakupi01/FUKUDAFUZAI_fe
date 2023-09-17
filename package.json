@@ -40,6 +40,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "husky": "^8.0.3",
+    "hygen": "^6.2.11",
     "markuplint": "^3.12.1"
   }
 }
