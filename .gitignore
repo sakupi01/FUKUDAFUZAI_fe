@@ -39,3 +39,6 @@ build-storybook.log
 
 # panda
 styled-system/
+
+# build
+storybook-static/

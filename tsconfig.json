@@ -1,18 +1,30 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    /* Base Options */
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "target": "es2022",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
     "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+
+    /* If NOT transpiling with TypeScript */
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
     "isolatedModules": true,
+    "outDir": "dist",
+
+    /* If your code runs in the DOM: */
+    "lib": ["dom", "dom.iterable", "esnext"],
+
+    /* Specific settings */
+    "forceConsistentCasingInFileNames": true,
     "jsx": "preserve",
     "incremental": true,
     "plugins": [
