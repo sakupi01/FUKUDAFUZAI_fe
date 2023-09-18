@@ -1,8 +1,9 @@
-const million = require('million/compiler');
+const million = require('million/compiler')
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  experimental: {
+    typedRoutes: true,
+  },
+}
 
-module.exports = million.next(
-  nextConfig
-, { auto: { rsc: true } }
-)
+module.exports = million.next(nextConfig, { auto: { rsc: true } })
