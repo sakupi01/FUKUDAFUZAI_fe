@@ -1,11 +1,11 @@
 ---
 to: <%= abs_path %>/<%= component_name %>.stories.ts
 ---
-import type { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/testing-library'
 
-import { <%= component_name %> } from './<%= component_name %>';
+import { <%= component_name %> } from './<%= component_name %>'
 
+import type { Meta, StoryObj } from '@storybook/react'
 <% if (have_props) { -%>
 export type <%= component_name %>Props = {};
 <% } -%>
