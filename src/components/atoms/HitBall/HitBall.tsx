@@ -3,7 +3,7 @@ import { RigidBody } from '@react-three/rapier'
 import React from 'react'
 import { useEffect, type Dispatch, type SetStateAction } from 'react'
 
-import type { Vector3ObjectBall } from '../../molecules/HitMaterials'
+import type { Vector3ObjectBall } from '@/types/BallTypes'
 
 export function HitBall(props: {
   ball: Vector3ObjectBall

@@ -22,6 +22,7 @@ export default defineConfig({
       colors: {
         primary: { value: '#F8E81D' },
         secondary: { value: '#5D5FEF' },
+        base: { value: '#F1F1F1' },
       },
     },
     extend: {
