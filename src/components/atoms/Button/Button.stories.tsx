@@ -27,7 +27,7 @@ const meta = {
           backgroundColor: '#000',
         }}
       >
-        <Button label='Button' primary />
+        <Button label='Button' primary size='medium' />
       </div>
     ),
   ],
