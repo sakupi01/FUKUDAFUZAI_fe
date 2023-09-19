@@ -1,20 +1,20 @@
 import { within } from '@storybook/testing-library'
 
-import { Test } from './Test'
+import { Button } from './Button'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
-export type TestProps = {}
+export type ButtonProps = {}
 
 const meta = {
-  title: 'Test',
-  component: Test,
+  title: 'Button',
+  component: Button,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
   argTypes: {},
-} satisfies Meta<typeof Test>
+} satisfies Meta<typeof Button>
 
 export default meta
 type Story = StoryObj<typeof meta>
