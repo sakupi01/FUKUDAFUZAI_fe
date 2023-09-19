@@ -16,7 +16,7 @@ export const UserItem: React.FC<UserItemProps> = ({
     <div
       className={css({
         display: 'flex',
-        padding: '8px 50px 8px 8px',
+        padding: '5px 50px 5px 5px',
         alignItems: 'center',
         borderRadius: '50px',
         gap: '35px',
@@ -26,10 +26,10 @@ export const UserItem: React.FC<UserItemProps> = ({
     >
       <div
         className={css({
-          width: '40px',
-          height: '40px',
-          minWidth: '40px',
-          minHeight: '40px',
+          width: '35px',
+          height: '35px',
+          minWidth: '35px',
+          minHeight: '35px',
           borderRadius: '50%',
         })}
         style={{ backgroundColor: iconColor }}
