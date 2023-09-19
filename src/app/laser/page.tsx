@@ -137,7 +137,7 @@ export default function Home() {
           id={thisId}
         />
       )}
-      {!isWaitingRoom && <PlayGroundForLaser />}
+      {!isWaitingRoom && <PlayGroundForLaser users={users} />}
     </>
   )
 }

@@ -11,7 +11,7 @@ export type PlayGroundForLaserProps = {
   users: User[]
 }
 
-export const PlayGroundForLaser = () => {
+export const PlayGroundForLaser = ({ ...props }: PlayGroundForLaserProps) => {
   const [cameraParams, setCameraParams] = useState({
     windowHeight: 0,
     windowWidth: 0,
@@ -51,7 +51,7 @@ export const PlayGroundForLaser = () => {
           maxVelocityFrictionIterations={2}
           gravity={[0, -40, 0]}
         >
-          <ObjectsForLaser />
+          <ObjectsForLaser users={props.users} />
         </Physics>
       </Suspense>
     </Canvas>
