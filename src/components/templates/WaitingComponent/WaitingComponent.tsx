@@ -9,6 +9,7 @@ export type WaitingComponentProps = {
   setIsWaitingRoom: Dispatch<SetStateAction<boolean>>
   setUsers: Dispatch<SetStateAction<User[]>>
   users: User[]
+  id: string | null
 }
 
 export const WaitingComponent = ({ ...props }: WaitingComponentProps) => {
@@ -18,6 +19,7 @@ export const WaitingComponent = ({ ...props }: WaitingComponentProps) => {
         setIsWaitingRoom={props.setIsWaitingRoom}
         setUsers={props.setUsers}
         users={props.users}
+        id={props.id}
       />
     </main>
   )

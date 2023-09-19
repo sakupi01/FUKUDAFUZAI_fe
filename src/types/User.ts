@@ -1,10 +1,10 @@
-type XY = {
+export type XY = {
   x: number
   y: number
 }
 
 export type User = {
-  id: string
+  id: number
   name: string
   peerId: string
   pointer: XY

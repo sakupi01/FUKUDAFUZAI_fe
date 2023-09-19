@@ -1,6 +1,6 @@
 import Image from 'next/image'
+import QRCode from 'qrcode.react'
 import React, { type Dispatch, type SetStateAction } from 'react'
-import { useState } from 'react'
 
 import { Button } from '@/components/atoms/Button'
 import { UserItem } from '@/components/atoms/UserItem/UserItem'
@@ -13,34 +13,10 @@ export type WaitCardProps = {
   setIsWaitingRoom: Dispatch<SetStateAction<boolean>>
   setUsers: Dispatch<SetStateAction<User[]>>
   users: User[]
+  id: string | null
 }
 
-// export const mockUser: User[] = [
-//   {
-//     user: 'user1',
-//     iconColor: 'red',
-//   },
-//   {
-//     user: 'user2',
-//     iconColor: 'blue',
-//   },
-//   {
-//     user: 'user3',
-//     iconColor: 'green',
-//   },
-//   {
-//     user: 'user4',
-//     iconColor: 'yellow',
-//   },
-//   {
-//     user: 'user5',
-//     iconColor: 'grey',
-//   },
-// ]
-
 export const WaitCard = ({ ...props }: WaitCardProps) => {
-  // 待機人数をstateで管理
-  const [people, setPeople] = useState('0')
   return (
     <div
       className={css({
@@ -58,7 +34,9 @@ export const WaitCard = ({ ...props }: WaitCardProps) => {
       })}
     >
       <p className={css({ fontSize: '20px', fontWeight: 'bold' })}>Waiting Room</p>
-      <p className={css({ fontSize: '20px', marginTop: '14px' })}>{people} / 5</p>
+      <p className={css({ fontSize: '20px', marginTop: '14px' })}>
+        {props.users.length} / 5
+      </p>
       <div
         className={css({
           marginTop: '14px',
@@ -73,12 +51,16 @@ export const WaitCard = ({ ...props }: WaitCardProps) => {
             marginTop: '20px',
           })}
         >
-          <Image
-            src='https://picsum.photos/seed/picsum/200/200'
-            alt=''
-            width={200}
-            height={200}
-          />
+          {props.id ? (
+            <QRCode value={props.id} />
+          ) : (
+            <Image
+              src='https://picsum.photos/seed/picsum/200/200'
+              alt=''
+              width={200}
+              height={200}
+            />
+          )}
           <p
             className={css({
               fontSize: '14px',
@@ -102,7 +84,7 @@ export const WaitCard = ({ ...props }: WaitCardProps) => {
           {props.users.map((user) => (
             <UserItem
               key={user.id}
-              label={`${user.id} ${user.name}`}
+              label={`${user.id}P ${user.name}`}
               iconColor={user.iconColor}
             />
           ))}
