@@ -1,44 +1,42 @@
 import Image from 'next/image'
-import React, { type Dispatch, type Key, type SetStateAction } from 'react'
+import React, { type Dispatch, type SetStateAction } from 'react'
 import { useState } from 'react'
 
 import { Button } from '@/components/atoms/Button'
 import { UserItem } from '@/components/atoms/UserItem/UserItem'
 
+import type { User } from '@/types/User'
+
 import { css } from '../../../../styled-system/css'
 
 export type WaitCardProps = {
   setIsWaitingRoom: Dispatch<SetStateAction<boolean>>
+  setUsers: Dispatch<SetStateAction<User[]>>
+  users: User[]
 }
 
-export type User = {
-  key?: Key | null | undefined
-  user: string
-  iconColor: string
-}
-
-export const mockUser: User[] = [
-  {
-    user: 'user1',
-    iconColor: 'red',
-  },
-  {
-    user: 'user2',
-    iconColor: 'blue',
-  },
-  {
-    user: 'user3',
-    iconColor: 'green',
-  },
-  {
-    user: 'user4',
-    iconColor: 'yellow',
-  },
-  {
-    user: 'user5',
-    iconColor: 'grey',
-  },
-]
+// export const mockUser: User[] = [
+//   {
+//     user: 'user1',
+//     iconColor: 'red',
+//   },
+//   {
+//     user: 'user2',
+//     iconColor: 'blue',
+//   },
+//   {
+//     user: 'user3',
+//     iconColor: 'green',
+//   },
+//   {
+//     user: 'user4',
+//     iconColor: 'yellow',
+//   },
+//   {
+//     user: 'user5',
+//     iconColor: 'grey',
+//   },
+// ]
 
 export const WaitCard = ({ ...props }: WaitCardProps) => {
   // 待機人数をstateで管理
@@ -101,8 +99,12 @@ export const WaitCard = ({ ...props }: WaitCardProps) => {
             },
           })}
         >
-          {mockUser.map((user) => (
-            <UserItem key={user.key} label={user.user} iconColor={user.iconColor} />
+          {props.users.map((user) => (
+            <UserItem
+              key={user.id}
+              label={`${user.id} ${user.name}`}
+              iconColor={user.iconColor}
+            />
           ))}
         </div>
       </div>
