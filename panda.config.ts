@@ -16,4 +16,23 @@ export default defineConfig({
 
   // The output directory for your css system
   outdir: 'styled-system',
+  jsxFramework: 'react',
+  theme: {
+    tokens: {
+      colors: {
+        primary: { value: '#F8E81D' },
+        secondary: { value: '#5D5FEF' },
+      },
+    },
+    extend: {
+      keyframes: {
+        neonGlow: {
+          '0%': { boxShadow: '0 0 10px 5px rgba(255, 234, 0, 0.8)' },
+          '100%': {
+            boxShadow: '0 0 15px 5px rgba(255, 234, 0, 1)',
+          },
+        },
+      },
+    },
+  },
 })
