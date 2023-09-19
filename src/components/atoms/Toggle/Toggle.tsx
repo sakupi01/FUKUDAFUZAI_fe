@@ -25,6 +25,7 @@ export const Toggle = ({ primary = false, ...props }: ToggleProps) => {
     >
       <button
         id='toggle'
+        aria-label='ダークモードとライトモードを切り替えるボタンです'
         onClick={toggle}
         className={css({
           width: '46px',
@@ -53,16 +54,6 @@ export const Toggle = ({ primary = false, ...props }: ToggleProps) => {
           },
         })}
       ></button>
-      <label
-        htmlFor='toggle'
-        className={css({
-          color: '#1E2121',
-          marginLeft: '12px',
-          cursor: 'pointer',
-        })}
-      >
-        ダークモード
-      </label>
     </div>
   )
 }
