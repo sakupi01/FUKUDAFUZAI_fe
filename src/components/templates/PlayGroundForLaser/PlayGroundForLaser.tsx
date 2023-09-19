@@ -3,7 +3,13 @@ import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/rapier'
 import { Suspense, useState, useEffect } from 'react'
 
+import type { User } from '@/types/User'
+
 import { ObjectsForLaser } from '../../organisms/ObjectsForLaser'
+
+export type PlayGroundForLaserProps = {
+  users: User[]
+}
 
 export const PlayGroundForLaser = () => {
   const [cameraParams, setCameraParams] = useState({
