@@ -18,7 +18,7 @@ import type { User } from '@/types/User'
 
 import { sensorPerInfoToPointer } from '@/utils/sensorPerInfoToPointer'
 
-export default function Home() {
+export default function Laser() {
   const [isWaitingRoom, setIsWaitingRoom] = useState(true)
 
   const [thisId, setThisId] = useState<string | null>(null)
