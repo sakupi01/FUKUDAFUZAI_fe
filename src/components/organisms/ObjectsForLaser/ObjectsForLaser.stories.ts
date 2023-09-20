@@ -21,5 +21,18 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
   },
-  args: { users: [] },
+  args: {
+    users: [
+      {
+        id: 1,
+        name: 'test',
+        peerId: 'sdfnoifsdf',
+        pointer: {
+          x: 0.1,
+          y: 0.3,
+        },
+        iconColor: 'red',
+      },
+    ],
+  },
 }

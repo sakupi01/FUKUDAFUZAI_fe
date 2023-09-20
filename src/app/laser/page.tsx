@@ -1,4 +1,5 @@
 'use client'
+// @ts-ignore
 import { Peer, DataConnection } from 'peerjs'
 import { useEffect, useState } from 'react'
 
@@ -15,7 +16,7 @@ import {
 import type { SensorPerInfo } from '@/types/SensorPerInfo'
 import type { User } from '@/types/User'
 
-import { sensorPerInfoToPointer } from '@/util/sensorPerInfoToPointer'
+import { sensorPerInfoToPointer } from '@/utils/sensorPerInfoToPointer'
 
 export default function Home() {
   const [isWaitingRoom, setIsWaitingRoom] = useState(true)

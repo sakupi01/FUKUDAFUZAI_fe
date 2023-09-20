@@ -1,3 +1,4 @@
+'use client'
 import { Center, Text3D } from '@react-three/drei'
 
 export const Font = () => {

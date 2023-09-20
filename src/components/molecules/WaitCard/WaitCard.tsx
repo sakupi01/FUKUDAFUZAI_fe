@@ -1,4 +1,5 @@
 import Image from 'next/image'
+// @ts-ignore
 import QRCode from 'qrcode.react'
 import React, { type Dispatch, type SetStateAction } from 'react'
 
