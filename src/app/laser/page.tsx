@@ -1,6 +1,7 @@
 'use client'
 import { Peer, DataConnection } from 'peerjs'
 import { useEffect, useRef, useState } from 'react'
+import * as THREE from 'three'
 
 import { PlayGroundForLaser } from '@/components/templates/PlayGroundForLaser'
 import { WaitingComponent } from '@/components/templates/WaitingComponent'
@@ -13,6 +14,7 @@ import {
   type UserSettingRes,
   colors,
   userSettingRes,
+  type Shoot,
 } from '@/types/Message'
 import type { SensorPerInfo } from '@/types/SensorPerInfo'
 import type { User } from '@/types/User'
@@ -26,6 +28,9 @@ export default function Home() {
   const [sensorPerInfo, setSensorPerInfo] = useState<SensorPerInfo | null>(null)
   const [users, setUsers] = useState<User[]>([])
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [camera, setCamera] = useState<THREE.PerspectiveCamera | null>(null)
+
+  const boxRef = useRef<THREE.Mesh>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -98,6 +103,28 @@ export default function Home() {
             })
           } else if (recieved.type === 'shoot') {
             console.log('shoot')
+            setCamera((prev) => {
+              if (!prev) return prev
+              console.log(prev)
+              const shoot: Shoot = recieved.data as Shoot
+              let { x, y } = sensorPerInfoToPointer(
+                shoot.sensorPerInfo,
+                window.innerWidth,
+                window.innerHeight,
+              )
+
+              x = (x / window.innerWidth) * 2 - 1
+              y = -(y / window.innerHeight) * 2 + 1
+              const pos = new THREE.Vector3(x, y, 1)
+              console.log(pos)
+              pos.unproject(prev)
+              console.log(pos)
+
+              if (boxRef.current) {
+                boxRef.current.position.set(pos.x, pos.y, pos.z)
+              }
+              return prev
+            })
 
             // TODO: shoot
 
@@ -127,7 +154,9 @@ export default function Home() {
             // })
           }
         })
-        conn.on('open', () => {})
+        conn.on('open', () => {
+          console.log('open')
+        })
       })
     }
   }, [])
@@ -156,6 +185,14 @@ export default function Home() {
   }
 
   useEffect(() => {
+    if (!window) return
+    window.addEventListener('click', (e) => {
+      const x = (e.clientX / window.innerWidth) * 2.0 - 1.0
+      const y = (e.clientY / window.innerHeight) * 2.0 - 1.0
+      console.log(x, -y)
+    })
+  }, [])
+  useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d')
     if (!ctx) return
     const width = canvasRef.current!.width
@@ -180,7 +217,7 @@ export default function Home() {
       )}
       {!isWaitingRoom && (
         <>
-          <PlayGroundForLaser users={users} />
+          <PlayGroundForLaser users={users} camera={camera} setCamera={setCamera} />
           <canvas
             width={innerWidth}
             height={innerHeight}
