@@ -21,4 +21,5 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
   },
+  args: { users: [] },
 }
