@@ -1,3 +1,5 @@
+import { CanvasProvider } from '@/utils/canvasProvider'
+
 import { HitBall } from './HitBall'
 
 import type { Meta, StoryObj } from '@storybook/react'
@@ -38,4 +40,11 @@ export const Default: Story = {
       },
     ],
   },
+  decorators: [
+    (Story) => (
+      <CanvasProvider>
+        <Story />
+      </CanvasProvider>
+    ),
+  ],
 }
