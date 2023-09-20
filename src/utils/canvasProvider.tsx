@@ -44,7 +44,6 @@ export const CanvasProvider = ({ ...props }: { children: React.ReactNode }) => {
           interpolate={true}
           maxVelocityIterations={1}
           maxVelocityFrictionIterations={2}
-          gravity={[0, -40, 0]}
         >
           {props.children}
         </Physics>

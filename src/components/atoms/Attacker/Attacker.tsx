@@ -1,19 +1,31 @@
 import { Sphere } from '@react-three/drei'
-import { RigidBody, type Vector3Object } from '@react-three/rapier'
+import { RapierRigidBody, RigidBody, type Vector3Object } from '@react-three/rapier'
+import { useRef, useEffect, type Dispatch, type SetStateAction } from 'react'
 
-import type { Dispatch, SetStateAction } from 'react'
+import type { XY } from '@/types/User'
+import type { User } from '@/types/User'
 export type AttackerProps = {
   key: number
   color: string
-  position: Vector3Object
-  setHit: Dispatch<SetStateAction<boolean>>
+  position: XY
+  setUsers: Dispatch<SetStateAction<User[]>>
 }
 
 export const Attacker = ({ ...props }: AttackerProps) => {
+  const rb = useRef<RapierRigidBody>(null)
+
+  const restartBall = () => {
+    rb.current?.setTranslation({ x: -5, y: 0, z: 0 }, true) // position to the target
+    rb.current?.setLinvel({ x: 0, y: 10, z: -14 }, true) // liner velocity... NEED TO BE FIXED!
+  }
+  useEffect(() => {
+    restartBall()
+  })
+
   return (
     <RigidBody
-      type={'fixed'}
-      position={[props.position.x, props.position.y, props.position.z]}
+      ref={rb}
+      position={[props.position.x, props.position.y, 0]}
       colliders='ball'
       name='Attacker'
       onCollisionEnter={({ manifold, target, other }) => {
@@ -34,12 +46,17 @@ export const Attacker = ({ ...props }: AttackerProps) => {
           )
           target.rigidBodyObject.clear()
           other.rigidBodyObject.clear()
+          props.setUsers((prev) =>
+            prev.filter(
+              (user) => user.positionGetter(innerWidth, innerHeight) !== props.position,
+            ),
+          )
         }
       }}
       key={props.key}
     >
       <Sphere
-        position={[props.position.x, props.position.y, props.position.z]}
+        position={[props.position.x, props.position.y, 0]}
         args={[0.45, 32, 32]}
         rotation={[-Math.PI / 2, 0, 0]}
       >
