@@ -7,6 +7,12 @@ const meta = {
   component: Timer,
   tags: ['autodocs'],
   parameters: {
+    nextjs: {
+      appDirectory: true,
+    },
+    navigation: {
+      pathname: '/finish',
+    },
     layout: 'fullscreen',
   },
   argTypes: {},

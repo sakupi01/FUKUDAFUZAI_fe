@@ -7,22 +7,23 @@ import { Suspense } from 'react'
 const distance = 800
 const FOV = (2 * Math.atan(innerHeight / (2 * distance)) * 180) / Math.PI
 
-export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
+export const CanvasProvider = ({ ...props }: { children: React.ReactNode }) => {
   return (
     <Canvas
       shadows
       gl={{ localClippingEnabled: true }}
+      dpr={[1, 1.5]}
       camera={{
-        position: [0, 2, 5],
+        position: [0, 5, -25 / 2],
         fov: FOV,
-        aspect: innerWidth / innerHeight,
       }}
       style={{ width: '100vw', height: '100vh' }}
     >
+      <axesHelper args={[5]} />
       <ambientLight />
-      <pointLight position={[-5, -5, -5]} />
+      <pointLight position={[0, 0, 0]} />
       {/* Control the movement of the camera with mouse interaction */}
-      <OrbitControls attach='orbitControls' />
+      <OrbitControls attach='orbitControls' autoRotate />
       <color attach='background' args={['#fff']} />
       {/* <fog attach="fog" args={["#fff", 5, 20]} /> */}
       {/* To make sure all the required engines are loaded before te calculation */}
@@ -35,7 +36,7 @@ export const CanvasProvider = ({ children }: { children: React.ReactNode }) => {
           maxVelocityFrictionIterations={2}
           gravity={[0, -40, 0]}
         >
-          {children}
+          {props.children}
         </Physics>
       </Suspense>
     </Canvas>

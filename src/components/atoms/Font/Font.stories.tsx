@@ -1,4 +1,3 @@
-
 import { CanvasProvider } from '@/utils/canvasProvider'
 
 import { Font } from './Font'
@@ -19,11 +18,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  args: {
+    label: 'Hello World',
+  },
   decorators: [
     (Story) => (
-     <CanvasProvider>
-      <Story />
-     </CanvasProvider>
+      <CanvasProvider>
+        <Story />
+      </CanvasProvider>
     ),
   ],
 }

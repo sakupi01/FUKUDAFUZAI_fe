@@ -1,11 +1,13 @@
-import { css } from 'styled-system/css'
+import { Font } from '@/components/atoms/Font'
 
-import { Font } from '../../atoms/Font/Font'
+import { CanvasProvider } from '@/utils/canvasProvider'
 
 export const TheEndOfTheGame = () => {
   return (
-    <main className={css({ width: '100vw', height: '100vh' })}>
-      <Font />
-    </main>
+    <>
+      <CanvasProvider>
+        <Font label='Finished!' />
+      </CanvasProvider>
+    </>
   )
 }

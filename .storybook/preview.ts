@@ -10,6 +10,11 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    parameters: {
+      nextjs: {
+        appDirectory: true,
+      },
+    },
   },
 }
 
