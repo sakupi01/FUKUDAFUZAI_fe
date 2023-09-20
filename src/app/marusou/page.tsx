@@ -11,7 +11,7 @@ export type MarusouProps = {
   users: User[]
 }
 
-export const Marusou = ({ ...props }: MarusouProps) => {
+export default function Marusou({ ...props }: MarusouProps) {
   const [cameraParams, setCameraParams] = useState({
     windowHeight: 0,
     windowWidth: 0,
@@ -68,5 +68,3 @@ export const Marusou = ({ ...props }: MarusouProps) => {
     </Canvas>
   )
 }
-
-export default Marusou
