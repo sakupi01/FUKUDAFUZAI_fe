@@ -7,11 +7,11 @@ import { Vector3 } from 'three'
 
 import type { User } from '@/types/User'
 
-export type PlayGroundForLaserProps = {
+export type MarusouProps = {
   users: User[]
 }
 
-export const PlayGroundForLaser = ({ ...props }: PlayGroundForLaserProps) => {
+export const Marusou = ({ ...props }: MarusouProps) => {
   const [cameraParams, setCameraParams] = useState({
     windowHeight: 0,
     windowWidth: 0,
@@ -41,7 +41,6 @@ export const PlayGroundForLaser = ({ ...props }: PlayGroundForLaserProps) => {
   }, [])
 
   console.log(cameraPosition)
-
   return (
     <Canvas
       shadows
@@ -70,4 +69,4 @@ export const PlayGroundForLaser = ({ ...props }: PlayGroundForLaserProps) => {
   )
 }
 
-export default PlayGroundForLaser
+export default Marusou
