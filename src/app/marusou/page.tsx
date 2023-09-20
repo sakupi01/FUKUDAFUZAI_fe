@@ -5,13 +5,7 @@ import { Physics } from '@react-three/rapier'
 import { Suspense, useState, useEffect } from 'react'
 import { Vector3 } from 'three'
 
-import type { User } from '@/types/User'
-
-export type MarusouProps = {
-  users: User[]
-}
-
-export default function Marusou({ ...props }: MarusouProps) {
+export default function Marusou() {
   const [cameraParams, setCameraParams] = useState({
     windowHeight: 0,
     windowWidth: 0,
