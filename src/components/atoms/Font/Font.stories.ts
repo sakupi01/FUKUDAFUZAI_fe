@@ -1,5 +1,3 @@
-import { within } from '@storybook/testing-library'
-
 import { Font } from './Font'
 
 import type { Meta, StoryObj } from '@storybook/react'
@@ -17,8 +15,4 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-  },
-}
+export const Default: Story = {}

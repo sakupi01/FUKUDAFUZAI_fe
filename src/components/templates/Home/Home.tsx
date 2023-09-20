@@ -1,4 +1,8 @@
+'use client'
+
 import { Canvas } from '@react-three/fiber'
+
+import { Font } from '@/components/atoms/Font'
 
 import { css } from '../../../../styled-system/css'
 import { Button } from '../../atoms/Button/Button'
@@ -28,7 +32,7 @@ export const Home = ({ ...props }: HomeProps) => {
           backgroundColor: '#000',
         }}
       >
-        <ambientLight />
+        <Font />
       </Canvas>
     </>
   )

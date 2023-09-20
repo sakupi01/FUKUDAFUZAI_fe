@@ -1,7 +1,9 @@
 import React from 'react'
 
+import { Home } from '@/components/templates/Home'
+
 function Page() {
-  return <div>Page</div>
+  return <Home />
 }
 
 export default Page
