@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 import { CanvasProvider } from '@/utils/canvasProvider'
 
 import { ObjectsForLaser } from './ObjectsForLaser'
@@ -45,10 +47,19 @@ export const Default: Story = {
         iconColor: 'green',
       },
     ],
+    attackerParams: [
+      {
+        id: 1,
+        color: '#fff',
+        position: { x: 0, y: 0, z: 0 },
+        scoreSender: () => {},
+      },
+    ],
+    setTargets: () => {},
   },
   decorators: [
     (Story) => (
-      <CanvasProvider>
+      <CanvasProvider camera={new THREE.PerspectiveCamera()}>
         <Story />
       </CanvasProvider>
     ),

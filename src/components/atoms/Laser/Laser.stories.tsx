@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 import { CanvasProvider } from '@/utils/canvasProvider'
 
 import { Laser } from './Laser'
@@ -20,7 +22,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   decorators: [
     (Story) => (
-      <CanvasProvider>
+      <CanvasProvider camera={new THREE.PerspectiveCamera()}>
         <Story />
       </CanvasProvider>
     ),

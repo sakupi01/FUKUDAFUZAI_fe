@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 import { CanvasProvider } from '@/utils/canvasProvider'
 
 import { HitBall } from './HitBall'
@@ -42,7 +44,7 @@ export const Default: Story = {
   },
   decorators: [
     (Story) => (
-      <CanvasProvider>
+      <CanvasProvider camera={new THREE.PerspectiveCamera()}>
         <Story />
       </CanvasProvider>
     ),

@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 import { CanvasProvider } from '@/utils/canvasProvider'
 
 import { Attacker } from './Attacker'
@@ -22,11 +24,11 @@ export const Default: Story = {
   args: {
     key: 0,
     color: '#fff',
-    position: { x: 0, y: 0 },
+    position: { x: 0, y: 0, z: 0 },
   },
   decorators: [
     (Story) => (
-      <CanvasProvider>
+      <CanvasProvider camera={new THREE.PerspectiveCamera()}>
         <Story />
       </CanvasProvider>
     ),
