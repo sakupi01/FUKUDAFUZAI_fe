@@ -50,7 +50,12 @@ export default function Home() {
                     id: u.id,
                     peerId: u.peerId,
                     name: u.name,
-                    pointer: sensorPerInfoToPointer(recieved.data as SensorPerInfo),
+                    positionGetter: (width: number, height: number) =>
+                      sensorPerInfoToPointer(
+                        recieved.data as SensorPerInfo,
+                        width,
+                        height,
+                      ),
                     iconColor: u.iconColor,
                   }
                 : u
@@ -72,7 +77,9 @@ export default function Home() {
                 id: prev.length + 1,
                 peerId: conn.peer,
                 name: (recieved.data as UserSetting).name,
-                pointer: { x: 0, y: 0 },
+                positionGetter: () => {
+                  return { x: 0, y: 0 }
+                },
                 iconColor: ['red', 'blue', 'green', 'yellow', 'grey'][
                   prev.length
                 ] as string,

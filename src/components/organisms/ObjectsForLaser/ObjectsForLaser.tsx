@@ -2,7 +2,6 @@ import { useDepthBuffer } from '@react-three/drei'
 
 import type { User } from '@/types/User'
 
-import { Laser } from '../../atoms/Laser'
 import { HitMaterials } from '../../molecules/HitMaterials'
 
 export type ObjectForLaserProps = {
@@ -15,14 +14,14 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
   return (
     <>
       <HitMaterials />
-      {props.users.map((user) => (
+      {/* {props.users.map((user) => (
         <Laser
           key={user.id}
           depthBuffer={depthBuffer}
           color={LASER_COLORS[user.id]}
           position={user.pointer}
         />
-      ))}
+      ))} */}
       {/* <BoardForLaser /> */}
     </>
   )
