@@ -3,6 +3,7 @@ import { useDepthBuffer } from '@react-three/drei'
 import type { User } from '@/types/User'
 
 import { Laser } from '../../atoms/Laser'
+import { ThreeDBox } from '../../atoms/ThreeDBox/ThreeDBox'
 import { HitMaterials } from '../../molecules/HitMaterials'
 
 export type ObjectForLaserProps = {
@@ -14,6 +15,7 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
   const LASER_COLORS = ['#0c8cbf', '#b3bf0c', '#bf0cb6', '#12fa54', '#510cbf']
   return (
     <>
+      <ThreeDBox />
       <HitMaterials />
       {props.users.map((user) => (
         <Laser
@@ -23,7 +25,6 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
           position={user.pointer}
         />
       ))}
-      {/* <BoardForLaser /> */}
     </>
   )
 }

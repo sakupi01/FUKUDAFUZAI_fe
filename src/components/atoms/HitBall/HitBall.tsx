@@ -26,13 +26,13 @@ export function HitBall(props: {
   return (
     <RigidBody
       type={'fixed'}
-      position={[props.ball.x, props.ball.y, 0]}
+      position={[props.ball.x, props.ball.y, props.ball.z]}
       colliders='ball'
       name='Ball'
     >
       <Sphere
-        position={[props.ball.x, props.ball.y, 0]}
-        args={[0.25, 32, 32]}
+        position={[props.ball.x, props.ball.y, props.ball.z]}
+        args={[0.45, 32, 32]}
         rotation={[-Math.PI / 2, 0, 0]}
         onPointerEnter={() => {
           props.setBalls(props.balls.filter((p, index) => p !== props.ball)) // add point
