@@ -147,7 +147,9 @@ export default function Laser() {
               setAttackerParams((prev) => {
                 const attackerParam: AttackerParam = {
                   id: prev.length + 1,
-                  color: `#${colors[shoot.id]}`,
+                  // color: '#89d3f0',
+                  color: `#${colors[shoot.id - 1]}`,
+                  // color: LASER_COLORS[shoot.id - 1]!,
                   // position: new THREE.Vector3(pos.x, pos.y, pos.z + 15),
                   position: new THREE.Vector3(v.x, v.y, 0),
                   scoreSender: (score) => {

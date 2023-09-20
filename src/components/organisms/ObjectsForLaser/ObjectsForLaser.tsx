@@ -1,12 +1,11 @@
 import React from 'react'
 
 import { Attacker, type AttackerParam } from '@/components/atoms/Attacker/Attacker'
+import { ThreeDBox } from '@/components/atoms/ThreeDBox'
+import { HitMaterials } from '@/components/molecules/HitMaterials'
 
 import type { Vector3ObjectBall } from '@/types/BallTypes'
 import type { User } from '@/types/User'
-
-import { ThreeDBox } from '../../atoms/ThreeDBox/ThreeDBox'
-import { HitMaterials } from '../../molecules/HitMaterials'
 
 export type ObjectForLaserProps = {
   users: User[]
@@ -15,6 +14,8 @@ export type ObjectForLaserProps = {
 }
 
 export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
+  console.log('ObjectsForLaser')
+
   return (
     <>
       {/* {attckers && (
@@ -37,8 +38,9 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
           color={LASER_COLORS[user.id]}
           position={user.pointer}
         />
-      ))}
+      ))} */}
       {/* <BoardForLaser /> */}
+
       {/* <Attackers attackerParams={props.attackerParams} />
       <ThreeDBox />
       <HitMaterials setTargets={props.setTargets} /> */}

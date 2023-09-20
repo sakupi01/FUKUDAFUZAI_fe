@@ -9,7 +9,8 @@ export type AttackersProps = {
 
 export const Attackers = ({ ...props }: AttackersProps) => {
   // const [attackers, setUsers] = useState(props.attackerParams)
-  const LASER_COLORS = ['#89d3f0', '#f7fdab', '#f693f1', '#abf0bf', '#c29cff']
+
+  console.log('Attackers')
 
   const MemoAttacker = React.memo(Attacker)
   return (
@@ -17,7 +18,8 @@ export const Attackers = ({ ...props }: AttackersProps) => {
       {props.attackerParams.map((attacker, key) => (
         <MemoAttacker
           key={key}
-          color={LASER_COLORS[attacker.id] || '#89d3f0'}
+          color={attacker.color}
+          // color={'#89d3f0'}
           position={attacker.position}
           scoreSender={attacker.scoreSender}
         />

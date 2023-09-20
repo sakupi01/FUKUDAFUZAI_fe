@@ -21,8 +21,14 @@ export type AttackerProps = {
 export const Attacker = ({ ...props }: AttackerProps) => {
   const rb = useRef<RapierRigidBody>(null)
 
+  console.log('Attacker')
+
   useEffect(() => {
+    console.log('restartBall')
+
     const restartBall = () => {
+      console.log(props.position.x, props.position.y)
+
       rb.current?.setTranslation(
         { x: props.position.x, y: props.position.y, z: 25 / 2 },
         true,

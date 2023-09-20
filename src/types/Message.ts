@@ -23,6 +23,7 @@ export type UserSetting = {
 }
 
 export const colors = ['FF0000', '0000FF', '008000', 'FFFF00', '808080']
+export const LASER_COLORS = ['#89d3f0', '#f7fdab', '#f693f1', '#abf0bf', '#c29cff']
 export type UserSettingRes = {
   id: number
   name: string
