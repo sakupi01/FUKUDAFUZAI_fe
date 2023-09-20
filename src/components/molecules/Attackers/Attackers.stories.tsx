@@ -1,18 +1,19 @@
 import { CanvasProvider } from '@/utils/canvasProvider'
 
-import { ObjectsForLaser } from './ObjectsForLaser'
+import { Attackers } from './Attackers'
 
 import type { Meta, StoryObj } from '@storybook/react'
+export type AttackersProps = {}
 
 const meta = {
-  title: 'ObjectsForLaser',
-  component: ObjectsForLaser,
+  title: 'Attackers',
+  component: Attackers,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },
   argTypes: {},
-} satisfies Meta<typeof ObjectsForLaser>
+} satisfies Meta<typeof Attackers>
 
 export default meta
 type Story = StoryObj<typeof meta>

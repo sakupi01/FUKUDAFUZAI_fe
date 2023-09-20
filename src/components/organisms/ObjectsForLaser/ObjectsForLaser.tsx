@@ -1,5 +1,4 @@
-import { useDepthBuffer } from '@react-three/drei'
-import { useState } from 'react'
+import React from 'react'
 
 import { Attacker } from '@/components/atoms/Attacker'
 import type { AttackerParam } from '@/components/atoms/Attacker/Attacker'
@@ -17,18 +16,6 @@ export type ObjectForLaserProps = {
 }
 
 export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
-  // const [attckers, setAttacker] = useState<typeof RigidBody>()
-  const user = {
-    id: 1,
-    pointer: { x: 0, y: 0, z: 0 },
-  }
-  const [attckers, setAttacker] = useState(false)
-  const [hit, setHit] = useState(false)
-  const depthBuffer = useDepthBuffer({ frames: 1 })
-  const LASER_COLORS = ['#89d3f0', '#f7fdab', '#f693f1', '#abf0bf', '#c29cff']
-  document.body.onclick = () => {
-    setAttacker(true)
-  }
   return (
     <>
       {/* {attckers && (
@@ -40,7 +27,6 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
           color={attackerParam.color}
           position={attackerParam.position}
           scoreSender={attackerParam.scoreSender}
-          setHit={setHit}
         />
       ))}
       <ThreeDBox />
@@ -54,6 +40,9 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
         />
       ))}
       {/* <BoardForLaser /> */}
+      {/* <Attackers users={props.users} />
+      <ThreeDBox />
+      <HitMaterials /> */}
     </>
   )
 }

@@ -22,7 +22,7 @@ export const Default: Story = {
   args: {
     key: 0,
     color: '#fff',
-    position: { x: 0, y: 0, z: 0 },
+    position: { x: 0, y: 0 },
   },
   decorators: [
     (Story) => (
