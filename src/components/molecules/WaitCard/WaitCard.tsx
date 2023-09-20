@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { type Key } from 'react'
+import React, { type Dispatch, type Key, type SetStateAction } from 'react'
 import { useState } from 'react'
 
 import { Button } from '@/components/atoms/Button'
@@ -7,7 +7,9 @@ import { UserItem } from '@/components/atoms/UserItem/UserItem'
 
 import { css } from '../../../../styled-system/css'
 
-export type WaitCardProps = {}
+export type WaitCardProps = {
+  setIsWaitingRoom: Dispatch<SetStateAction<boolean>>
+}
 
 export type User = {
   key?: Key | null | undefined
@@ -105,7 +107,11 @@ export const WaitCard = ({ ...props }: WaitCardProps) => {
         </div>
       </div>
       <div className={css({ marginTop: '20px' })}>
-        <Button label='Start' primary={true} />
+        <Button
+          label='Start'
+          primary={true}
+          onClick={() => props.setIsWaitingRoom(false)}
+        />
       </div>
     </div>
   )

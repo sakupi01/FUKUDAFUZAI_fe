@@ -4,6 +4,7 @@ export type ButtonProps = {
   neon?: boolean
   size?: 'small' | 'medium' | 'large'
   label?: string
+  onClick?: () => void
 }
 
 export const Button = ({ primary, neon, label, ...props }: ButtonProps) => {
@@ -29,6 +30,7 @@ export const Button = ({ primary, neon, label, ...props }: ButtonProps) => {
           opacity: 0.8,
         },
       })}
+      onClick={props.onClick}
       {...props}
     >
       {label}
