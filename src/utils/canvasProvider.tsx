@@ -33,7 +33,7 @@ export const CanvasProvider = ({ ...props }: { children: React.ReactNode }) => {
       <ambientLight />
       <pointLight position={[0, 0, 0]} />
       {/* Control the movement of the camera with mouse interaction */}
-      <OrbitControls attach='orbitControls' autoRotate />
+      <OrbitControls attach='orbitControls' autoRotate enableZoom={false} />
       <color attach='background' args={['#fff']} />
       {/* <fog attach="fog" args={["#fff", 5, 20]} /> */}
       {/* To make sure all the required engines are loaded before te calculation */}

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Timer } from '../components/atoms/Timer/Timer';
+import { StartPage } from '@/components/templates/StartPage'
 
 function Page() {
-  return <div><Timer /></div>
+  return <StartPage />
 }
 
 export default Page

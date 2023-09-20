@@ -34,9 +34,9 @@ export function HitBall(props: {
         position={[props.ball.x, props.ball.y, props.ball.z]}
         args={[0.45, 32, 32]}
         rotation={[-Math.PI / 2, 0, 0]}
-        onPointerEnter={() => {
-          props.setBalls(props.balls.filter((p, index) => p !== props.ball)) // add point
-        }}
+        // onPointerEnter={() => {
+        //   props.setBalls(props.balls.filter((p, index) => p !== props.ball)) // add point
+        // }}
       >
         <meshStandardMaterial color={props.ball.color} roughness={0} />
       </Sphere>
