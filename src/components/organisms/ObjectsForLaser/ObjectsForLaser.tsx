@@ -2,7 +2,6 @@ import { useDepthBuffer } from '@react-three/drei'
 
 import type { User } from '@/types/User'
 
-import { Laser } from '../../atoms/Laser'
 import { ThreeDBox } from '../../atoms/ThreeDBox/ThreeDBox'
 import { HitMaterials } from '../../molecules/HitMaterials'
 
@@ -17,7 +16,7 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
     <>
       <ThreeDBox />
       <HitMaterials />
-      {props.users.map((user) => (
+      {/* {props.users.map((user) => (
         <Laser
           key={user.id}
           depthBuffer={depthBuffer}
@@ -25,6 +24,7 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
           position={user.pointer}
         />
       ))}
+      {/* <BoardForLaser /> */}
     </>
   )
 }

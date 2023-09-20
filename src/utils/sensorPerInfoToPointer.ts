@@ -1,9 +1,13 @@
 import type { SensorPerInfo } from '@/types/SensorPerInfo'
 import type { XY } from '@/types/User'
 
-export const sensorPerInfoToPointer = (sensorPerInfo: SensorPerInfo): XY => {
+export const sensorPerInfoToPointer = (
+  sensorPerInfo: SensorPerInfo,
+  width: number,
+  height: number,
+): XY => {
   return {
-    x: 600 - (600 * sensorPerInfo.gyro.z + 600 / 2),
-    y: 600 - (600 * sensorPerInfo.gyro.x + 600 / 2),
+    x: width - (width * sensorPerInfo.gyro.z + width / 2),
+    y: height - (height * sensorPerInfo.gyro.x + height / 2),
   }
 }
