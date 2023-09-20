@@ -119,17 +119,22 @@ export default function Laser() {
 
               x = (x / window.innerWidth) * 2 - 1
               y = -(y / window.innerHeight) * 2 + 1
-              // const pos = new THREE.Vector3(x, y, 1)
-              // pos.unproject(prev)
-              // const raycaster = new THREE.Raycaster(
-              //   prev.position,
-              //   pos.sub(prev.position).normalize(),
-              // )
-              // console.log(pos)
-              const v = new THREE.Vector2(x, y)
+              const pos = new THREE.Vector3(x, y, 1)
+              pos.unproject(prev)
+              const raycaster = new THREE.Raycaster(
+                prev.position,
+                pos.sub(prev.position).normalize(),
+              )
+              console.log(pos)
+              // if (boxRef.current) {
+              //   boxRef.current.position.set(pos.x, pos.y, pos.z)
+              // }
+              // return prev
 
-              const raycaster = new THREE.Raycaster()
-              raycaster.setFromCamera(v, prev)
+              // const v = new THREE.Vector2(x, y)
+
+              // const raycaster = new THREE.Raycaster()
+              // raycaster.setFromCamera(v, prev)
 
               // setTargets((prev) => {
               // const ob3d: THREE.Object3D[] = []
@@ -151,7 +156,9 @@ export default function Laser() {
                   color: `#${colors[shoot.id - 1]}`,
                   // color: LASER_COLORS[shoot.id - 1]!,
                   // position: new THREE.Vector3(pos.x, pos.y, pos.z + 15),
-                  position: new THREE.Vector3(v.x, v.y, 0),
+                  // position: new THREE.Vector3(v.x, v.y, 0),
+                  position: new THREE.Vector3(pos.x, pos.y, 0),
+
                   scoreSender: (score) => {
                     const res: Message = {
                       type: 'shootRes',
@@ -165,9 +172,9 @@ export default function Laser() {
                 return [...prev, attackerParam]
               })
               // }
-              // return prev
-              // })
               return prev
+              // })
+              // return prev
             })
 
             // TODO: shoot

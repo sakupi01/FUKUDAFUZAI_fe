@@ -10,8 +10,6 @@ export type AttackersProps = {
 export const Attackers = ({ ...props }: AttackersProps) => {
   // const [attackers, setUsers] = useState(props.attackerParams)
 
-  console.log('Attackers')
-
   const MemoAttacker = React.memo(Attacker)
   return (
     <>

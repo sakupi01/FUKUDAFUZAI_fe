@@ -14,8 +14,6 @@ export type ObjectForLaserProps = {
 }
 
 export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
-  console.log('ObjectsForLaser')
-
   return (
     <>
       {/* {attckers && (

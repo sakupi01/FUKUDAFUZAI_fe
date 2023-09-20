@@ -21,19 +21,17 @@ export type AttackerProps = {
 export const Attacker = ({ ...props }: AttackerProps) => {
   const rb = useRef<RapierRigidBody>(null)
 
-  console.log('Attacker')
-
   useEffect(() => {
     console.log('restartBall')
 
     const restartBall = () => {
       console.log(props.position.x, props.position.y)
 
-      rb.current?.setTranslation(
-        { x: props.position.x, y: props.position.y, z: 25 / 2 },
-        true,
-      ) // position to the target
-      rb.current?.setLinvel({ x: 0, y: 10, z: -14 }, true) // liner velocity... NEED TO BE FIXED!
+      // rb.current?.setTranslation(
+      //   { x: props.position.x, y: props.position.y, z: 25 / 2 },
+      //   true,
+      // ) // position to the target
+      // rb.current?.setLinvel({ x: 0, y: 10, z: -14 }, true) // liner velocity... NEED TO BE FIXED!
     }
     restartBall()
   }, [props.position.x, props.position.y])
@@ -73,7 +71,7 @@ export const Attacker = ({ ...props }: AttackerProps) => {
       key={props.key}
     >
       <Sphere
-        position={[props.position.x, props.position.y, -25 / 2]}
+        position={[props.position.x, props.position.y, 5]}
         args={[0.45, 32, 32]}
         rotation={[-Math.PI / 2, 0, 0]}
       >

@@ -45,7 +45,7 @@ export function randomObjectFactory(): Array<Vector3ObjectBall> {
       point: randomBall.point,
     }
     objects.push(object)
-    console.log(objects)
+    // console.log(objects)
   }
   return objects
 }
