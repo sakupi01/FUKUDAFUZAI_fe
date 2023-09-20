@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Attacker } from '@/components/atoms/Attacker'
-import type { AttackerParam } from '@/components/atoms/Attacker/Attacker'
+import { Attacker, type AttackerParam } from '@/components/atoms/Attacker/Attacker'
 
 import type { Vector3ObjectBall } from '@/types/BallTypes'
 import type { User } from '@/types/User'
@@ -40,9 +39,9 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
         />
       ))}
       {/* <BoardForLaser /> */}
-      {/* <Attackers users={props.users} />
+      {/* <Attackers attackerParams={props.attackerParams} />
       <ThreeDBox />
-      <HitMaterials /> */}
+      <HitMaterials setTargets={props.setTargets} /> */}
     </>
   )
 }

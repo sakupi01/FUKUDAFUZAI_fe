@@ -21,18 +21,21 @@ export type AttackerProps = {
 export const Attacker = ({ ...props }: AttackerProps) => {
   const rb = useRef<RapierRigidBody>(null)
 
-  const restartBall = () => {
-    rb.current?.setTranslation({ x: -5, y: 0, z: 0 }, true) // position to the target
-    rb.current?.setLinvel({ x: 0, y: 10, z: -14 }, true) // liner velocity... NEED TO BE FIXED!
-  }
   useEffect(() => {
+    const restartBall = () => {
+      rb.current?.setTranslation(
+        { x: props.position.x, y: props.position.y, z: 25 / 2 },
+        true,
+      ) // position to the target
+      rb.current?.setLinvel({ x: 0, y: 10, z: -14 }, true) // liner velocity... NEED TO BE FIXED!
+    }
     restartBall()
-  })
+  }, [props.position.x, props.position.y])
 
   return (
     <RigidBody
       ref={rb}
-      position={[props.position.x, props.position.y, 0]}
+      position={[props.position.x, props.position.y, -25 / 2]}
       colliders='ball'
       name='Attacker'
       onCollisionEnter={({ manifold, target, other }) => {
@@ -64,7 +67,7 @@ export const Attacker = ({ ...props }: AttackerProps) => {
       key={props.key}
     >
       <Sphere
-        position={[props.position.x, props.position.y, 0]}
+        position={[props.position.x, props.position.y, -25 / 2]}
         args={[0.45, 32, 32]}
         rotation={[-Math.PI / 2, 0, 0]}
       >
