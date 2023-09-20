@@ -23,11 +23,13 @@ export const Default: Story = {
       {
         id: 1,
         name: 'test',
-        peerId: 'sdfnoifsdf',
-        pointer: {
-          x: 0.1,
-          y: 0.3,
+        positionGetter: (width: number, height: number) => {
+          return {
+            x: 0,
+            y: 0,
+          }
         },
+        peerId: 'sdfnoifsdf',
         iconColor: 'red',
       },
     ],
