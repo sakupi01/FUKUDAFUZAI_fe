@@ -2,11 +2,20 @@ import { Sphere } from '@react-three/drei'
 import { RigidBody, type Vector3Object } from '@react-three/rapier'
 
 import type { Dispatch, SetStateAction } from 'react'
+
+export type AttackerParam = {
+  id: number
+  color: string
+  position: Vector3Object
+  scoreSender: (score: number | null) => void
+}
+
 export type AttackerProps = {
   key: number
   color: string
   position: Vector3Object
   setHit: Dispatch<SetStateAction<boolean>>
+  scoreSender: (score: number | null) => void
 }
 
 export const Attacker = ({ ...props }: AttackerProps) => {
@@ -34,6 +43,7 @@ export const Attacker = ({ ...props }: AttackerProps) => {
           )
           target.rigidBodyObject.clear()
           other.rigidBodyObject.clear()
+          props.scoreSender(100)
         }
       }}
       key={props.key}

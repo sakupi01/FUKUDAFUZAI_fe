@@ -4,9 +4,11 @@ import { Peer, DataConnection } from 'peerjs'
 import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 
+import type { AttackerParam } from '@/components/atoms/Attacker/Attacker'
 import { PlayGroundForLaser } from '@/components/templates/PlayGroundForLaser'
 import { WaitingComponent } from '@/components/templates/WaitingComponent'
 
+import type { Vector3ObjectBall } from '@/types/BallTypes'
 import {
   sensorInfo,
   type Message,
@@ -16,6 +18,7 @@ import {
   colors,
   userSettingRes,
   type Shoot,
+  type ShootRes,
 } from '@/types/Message'
 import type { SensorPerInfo } from '@/types/SensorPerInfo'
 import type { User } from '@/types/User'
@@ -30,6 +33,8 @@ export default function Laser() {
   const [users, setUsers] = useState<User[]>([])
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [camera, setCamera] = useState<THREE.PerspectiveCamera | null>(null)
+  const [targets, setTargets] = useState<Array<Vector3ObjectBall>>([])
+  const [attackerParams, setAttackerParams] = useState<Array<AttackerParam>>([])
 
   const boxRef = useRef<THREE.Mesh>(null)
 
@@ -80,8 +85,6 @@ export default function Laser() {
             setSensorPerInfo(recieved.data as SensorPerInfo)
           } else if (recieved.type === userSetting) {
             setUsers((prev) => {
-              console.log(prev)
-
               const user: User = {
                 id: prev.length + 1,
                 peerId: conn.peer,
@@ -106,8 +109,8 @@ export default function Laser() {
             console.log('shoot')
             setCamera((prev) => {
               if (!prev) return prev
-              console.log(prev)
               const shoot: Shoot = recieved.data as Shoot
+
               let { x, y } = sensorPerInfoToPointer(
                 shoot.sensorPerInfo,
                 window.innerWidth,
@@ -116,14 +119,52 @@ export default function Laser() {
 
               x = (x / window.innerWidth) * 2 - 1
               y = -(y / window.innerHeight) * 2 + 1
-              const pos = new THREE.Vector3(x, y, 1)
-              console.log(pos)
-              pos.unproject(prev)
-              console.log(pos)
+              // const pos = new THREE.Vector3(x, y, 1)
+              // pos.unproject(prev)
+              // const raycaster = new THREE.Raycaster(
+              //   prev.position,
+              //   pos.sub(prev.position).normalize(),
+              // )
+              // console.log(pos)
+              const v = new THREE.Vector2(x, y)
 
-              if (boxRef.current) {
-                boxRef.current.position.set(pos.x, pos.y, pos.z)
-              }
+              const raycaster = new THREE.Raycaster()
+              raycaster.setFromCamera(v, prev)
+
+              // setTargets((prev) => {
+              // const ob3d: THREE.Object3D[] = []
+              // prev.forEach((ball) => {
+              //   const object3D = new THREE.Object3D()
+              //   object3D.position.copy(new THREE.Vector3(ball.x, ball.y, ball.z))
+              //   ob3d.push(object3D)
+              // })
+              // console.log(ob3d)
+              // const hits = raycaster.intersectObjects(targets, false)
+              // console.log(`hits.length: ${hits.length}`)
+              // if (hits.length > 0) {
+              //   const pos = hits[0]!.object.position
+              //   console.log(pos)
+              setAttackerParams((prev) => {
+                const attackerParam: AttackerParam = {
+                  id: prev.length + 1,
+                  color: `#${colors[shoot.id]}`,
+                  // position: new THREE.Vector3(pos.x, pos.y, pos.z + 15),
+                  position: new THREE.Vector3(v.x, v.y, 0),
+                  scoreSender: (score) => {
+                    const res: Message = {
+                      type: 'shootRes',
+                      data: {
+                        score: score,
+                      } as ShootRes,
+                    }
+                    send(res, conn)
+                  },
+                }
+                return [...prev, attackerParam]
+              })
+              // }
+              // return prev
+              // })
               return prev
             })
 
@@ -184,15 +225,6 @@ export default function Laser() {
     ctx.fillStyle = 'gray'
     ctx.fillText(user.name, x - 10, y - 20)
   }
-
-  useEffect(() => {
-    if (!window) return
-    window.addEventListener('click', (e) => {
-      const x = (e.clientX / window.innerWidth) * 2.0 - 1.0
-      const y = (e.clientY / window.innerHeight) * 2.0 - 1.0
-      console.log(x, -y)
-    })
-  }, [])
   useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d')
     if (!ctx) return
@@ -218,7 +250,13 @@ export default function Laser() {
       )}
       {!isWaitingRoom && (
         <>
-          <PlayGroundForLaser users={users} camera={camera} setCamera={setCamera} />
+          <PlayGroundForLaser
+            users={users}
+            camera={camera}
+            setCamera={setCamera}
+            attackerParams={attackerParams}
+            setTargets={setTargets}
+          />
           <canvas
             width={innerWidth}
             height={innerHeight}

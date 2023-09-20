@@ -30,6 +30,7 @@ export type UserSettingRes = {
 }
 
 export type Shoot = {
+  id: number
   sensorPerInfo: SensorPerInfo
 }
 
