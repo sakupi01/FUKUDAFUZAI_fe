@@ -2,12 +2,22 @@
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/rapier'
-import { Suspense } from 'react'
-
-const distance = 800
-const FOV = (2 * Math.atan(innerHeight / (2 * distance)) * 180) / Math.PI
+import { Suspense, useEffect, useState } from 'react'
 
 export const CanvasProvider = ({ ...props }: { children: React.ReactNode }) => {
+  const [cameraParams, setCameraParams] = useState({
+    windowHeight: 0,
+    windowWidth: 0,
+  })
+  useEffect(() => {
+    setCameraParams({
+      windowHeight: innerHeight,
+      windowWidth: innerWidth,
+    })
+  }, [])
+  const distance = 800
+  const FOV = (2 * Math.atan(cameraParams.windowHeight / (2 * distance)) * 180) / Math.PI
+
   return (
     <Canvas
       shadows
