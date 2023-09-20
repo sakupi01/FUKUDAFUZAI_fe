@@ -1,10 +1,10 @@
 'use client'
-import { Canvas } from '@react-three/fiber'
-import { Physics } from '@react-three/rapier'
-import { Suspense, useEffect, type SetStateAction, type Dispatch } from 'react'
+import { useEffect, type SetStateAction, type Dispatch } from 'react'
 import * as THREE from 'three'
 
 import type { User } from '@/types/User'
+
+import { CanvasProvider } from '@/utils/canvasProvider'
 
 import { ObjectsForLaser } from '../../organisms/ObjectsForLaser'
 
@@ -24,36 +24,13 @@ export const PlayGroundForLaser = ({ ...props }: PlayGroundForLaserProps) => {
     props.setCamera(c)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
   return (
     <>
-      {props.camera ? (
-        <Canvas
-          shadows
-          camera={props.camera}
-          gl={{ localClippingEnabled: true }}
-          style={{ width: '100vw', height: '100vh' }}
-        >
-          <ambientLight />
-          {/* Control the movement of the camera with mouse interaction */}
-          {/* <OrbitControls attach="orbitControls" /> */}
-          <color attach='background' args={['#fff']} />
-          {/* <fog attach="fog" args={["#fff", 5, 20]} /> */}
-          {/* To make sure all the required engines are loaded before te calculation */}
-          <Suspense>
-            {/* the root component of your physics world. Needs to be wrapped in <Suspense /> */}
-            <Physics
-              debug
-              interpolate={true}
-              maxVelocityIterations={1}
-              maxVelocityFrictionIterations={2}
-              gravity={[0, -40, 0]}
-            >
-              <ObjectsForLaser users={props.users} />
-            </Physics>
-          </Suspense>
-        </Canvas>
-      ) : null}
+      {props.camera && (
+        <CanvasProvider camera={props.camera}>
+          <ObjectsForLaser users={props.users} />
+        </CanvasProvider>
+      )}
     </>
   )
 }

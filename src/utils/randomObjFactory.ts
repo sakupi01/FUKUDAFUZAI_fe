@@ -27,18 +27,19 @@ export function randomObjectFactory(): Array<Vector3ObjectBall> {
   }
   const ballArr = [RedBall, YellowBall, GreenBall, BlackBall]
   // const randomCount = 1; // ランダムな個数（1から5個）
-  const randomCount = Math.floor(Math.random() * 5) + 2 // ランダムな個数（1から5個）
+  const randomCount = Math.floor(Math.random() * 10) + 5 // ランダムな個数（5から10個）
   const objects = []
 
   for (let i = 0; i < randomCount; i++) {
-    const randomX = getRandomNumber(-3.5, 3.5) // xの範囲は-3.5から3.5
-    const randomY = getRandomNumber(-2.4, 1.6) // yの範囲は-2.4から1.6
+    const randomX = getRandomNumber(-6, 6)
+    const randomY = getRandomNumber(-6, 6)
+    const randomZ = getRandomNumber(-6, 6)
     const randomNumber = Math.floor(getRandomNumber(0, 3.9)) // yの範囲は-2.4から1.6
     const randomBall = ballArr[randomNumber] || BlackBall
     const object: Vector3ObjectBall = {
       x: randomX,
       y: randomY,
-      z: 0,
+      z: randomZ,
       time: randomBall.time,
       color: randomBall.color,
       point: randomBall.point,

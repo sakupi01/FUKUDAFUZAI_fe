@@ -1,4 +1,4 @@
-import { within } from '@storybook/testing-library'
+import { CanvasProvider } from '@/utils/canvasProvider'
 
 import { Font } from './Font'
 
@@ -18,7 +18,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
+  args: {
+    label: 'Hello World',
   },
+  decorators: [
+    (Story) => (
+      <CanvasProvider>
+        <Story />
+      </CanvasProvider>
+    ),
+  ],
 }
