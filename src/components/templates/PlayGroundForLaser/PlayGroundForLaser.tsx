@@ -3,8 +3,6 @@ import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/rapier'
 import { Suspense, useState, useEffect } from 'react'
 
-import { UserPointer } from '@/components/molecules/UserPointer'
-
 import type { User } from '@/types/User'
 
 import { ObjectsForLaser } from '../../organisms/ObjectsForLaser'
@@ -53,14 +51,6 @@ export const PlayGroundForLaser = ({ ...props }: PlayGroundForLaserProps) => {
           maxVelocityFrictionIterations={2}
           gravity={[0, -40, 0]}
         >
-          {props.users.map((user) => (
-            <UserPointer
-              key={user.id}
-              width={cameraParams.windowWidth}
-              height={cameraParams.windowHeight}
-              user={user}
-            />
-          ))}
           <ObjectsForLaser users={props.users} />
         </Physics>
       </Suspense>

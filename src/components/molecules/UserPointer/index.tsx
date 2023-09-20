@@ -1,1 +1,0 @@
-export { UserPointer } from './UserPointer'

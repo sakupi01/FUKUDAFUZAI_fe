@@ -1,6 +1,6 @@
 'use client'
 import { Peer, DataConnection } from 'peerjs'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { PlayGroundForLaser } from '@/components/templates/PlayGroundForLaser'
 import { WaitingComponent } from '@/components/templates/WaitingComponent'
@@ -23,6 +23,7 @@ export default function Home() {
   const [thisId, setThisId] = useState<string | null>(null)
   const [sensorPerInfo, setSensorPerInfo] = useState<SensorPerInfo | null>(null)
   const [users, setUsers] = useState<User[]>([])
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -135,6 +136,37 @@ export default function Home() {
     const ab = new TextEncoder().encode(JSON.stringify(msg)).buffer
     conn.send(new Uint8Array(ab))
   }
+
+  const drawPointer = (
+    ctx: CanvasRenderingContext2D,
+    user: User,
+    width: number,
+    height: number,
+  ) => {
+    const { x, y } = user.positionGetter(width, height)
+    ctx.beginPath()
+    ctx.arc(x, y, 10, 0, Math.PI * 2, true)
+    ctx.fillStyle = user.iconColor
+    ctx.fill()
+    ctx.stroke()
+    ctx.font = 'bold 14px Arial'
+    ctx.fillStyle = 'gray'
+    ctx.fillText(user.name, x - 10, y - 20)
+  }
+
+  useEffect(() => {
+    const ctx = canvasRef.current?.getContext('2d')
+    if (!ctx) return
+    const width = canvasRef.current!.width
+    const height = canvasRef.current!.height
+    ctx.clearRect(0, 0, width, height)
+    ctx.fill()
+
+    users.forEach((user) => {
+      drawPointer(ctx, user, width, height)
+    })
+  }, [sensorPerInfo, users])
+
   return (
     <>
       {isWaitingRoom && (
@@ -145,7 +177,24 @@ export default function Home() {
           id={thisId}
         />
       )}
-      {!isWaitingRoom && <PlayGroundForLaser users={users} />}
+      {!isWaitingRoom && (
+        <>
+          <PlayGroundForLaser users={users} />
+          <canvas
+            width={innerWidth}
+            height={innerHeight}
+            ref={canvasRef}
+            style={{
+              display: 'flex',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              zIndex: 100,
+              backgroundColor: 'transparent',
+            }}
+          />
+        </>
+      )}
     </>
   )
 }
