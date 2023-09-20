@@ -11,6 +11,8 @@ import {
   userSetting,
   type UserSetting,
   type UserSettingRes,
+  colors,
+  userSettingRes,
 } from '@/types/Message'
 import type { SensorPerInfo } from '@/types/SensorPerInfo'
 import type { User } from '@/types/User'
@@ -81,15 +83,14 @@ export default function Home() {
                 positionGetter: () => {
                   return { x: 0, y: 0 }
                 },
-                iconColor: ['red', 'blue', 'green', 'yellow', 'grey'][
-                  prev.length
-                ] as string,
+                iconColor: colors[prev.length] as string,
               }
               const res: Message = {
-                type: userSetting,
+                type: userSettingRes,
                 data: {
                   id: user.id,
                   name: user.name,
+                  colorCode: user.iconColor,
                 } as UserSettingRes,
               }
               send(res, conn)
@@ -146,7 +147,7 @@ export default function Home() {
     const { x, y } = user.positionGetter(width, height)
     ctx.beginPath()
     ctx.arc(x, y, 10, 0, Math.PI * 2, true)
-    ctx.fillStyle = user.iconColor
+    ctx.fillStyle = `#${user.iconColor}`
     ctx.fill()
     ctx.stroke()
     ctx.font = 'bold 14px Arial'
