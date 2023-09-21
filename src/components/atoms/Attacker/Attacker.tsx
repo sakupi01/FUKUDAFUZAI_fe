@@ -30,11 +30,8 @@ export const Attacker = ({ ...props }: AttackerProps) => {
     const restartBall = () => {
       console.log(props.position.x, props.position.y)
 
-      // rb.current?.setTranslation(
-      //   { x: props.position.x, y: props.position.y, z: 25 / 2 },
-      //   true,
-      // ) // position to the target
-      // rb.current?.setLinvel({ x: 0, y: 10, z: -14 }, true) // liner velocity... NEED TO BE FIXED!
+      rb.current?.setTranslation({ x: 0, y: 0, z: -25 / 2 }, true) // position to the target
+      rb.current?.setLinvel({ x: props.position.x, y: props.position.y, z: 10 }, true) // liner velocity... NEED TO BE FIXED!
     }
     restartBall()
   }, [props.position.x, props.position.y])
@@ -42,7 +39,7 @@ export const Attacker = ({ ...props }: AttackerProps) => {
   return (
     <RigidBody
       ref={rb}
-      position={[props.position.x, props.position.y, -25 / 2]}
+      position={[0, 0, 0]}
       colliders='ball'
       name={`attacker-${props.key}`}
       onCollisionEnter={({ manifold, target, other }) => {
@@ -76,11 +73,7 @@ export const Attacker = ({ ...props }: AttackerProps) => {
       }}
       key={props.key}
     >
-      <Sphere
-        position={[props.position.x, props.position.y, 5]}
-        args={[0.45, 32, 32]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      >
+      <Sphere position={[0, 0, 0]} args={[0.2, 8, 8]} rotation={[-Math.PI / 2, 0, 0]}>
         <meshStandardMaterial color={props.color} roughness={0} />
       </Sphere>
     </RigidBody>
