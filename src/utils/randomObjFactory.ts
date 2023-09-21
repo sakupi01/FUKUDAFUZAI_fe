@@ -30,8 +30,8 @@ export function randomObjectFactory(): Array<Vector3ObjectBall> {
     isDeleted: false,
   }
   const ballArr = [RedBall, YellowBall, GreenBall, BlackBall]
-  const randomCount = 1 // ランダムな個数（1から5個）
-  // const randomCount = Math.floor(Math.random() * 10) + 5 // ランダムな個数（5から10個）
+  // const randomCount = 1 // ランダムな個数（1から5個）
+  const randomCount = Math.floor(Math.random() * 10) + 5 // ランダムな個数（5から10個）
   const objects = []
 
   for (let i = 0; i < randomCount; i++) {

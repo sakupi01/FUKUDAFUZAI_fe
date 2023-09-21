@@ -8,8 +8,6 @@ export type ButtonProps = {
 }
 
 export const Button = ({ primary, neon, label, ...props }: ButtonProps) => {
-  // console.log(neon)
-
   return (
     <button
       className={css({
