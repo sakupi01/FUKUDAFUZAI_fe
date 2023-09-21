@@ -51,6 +51,7 @@ export function randomObjectFactory(): Array<Vector3ObjectBall> {
       isDeleted: randomBall.isDeleted,
     }
     objects.push(object)
+    // console.log(objects)
   }
   return objects
 }

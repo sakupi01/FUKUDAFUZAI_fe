@@ -4,7 +4,12 @@ import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/rapier'
 import { Suspense, useEffect, useState } from 'react'
 
-export const CanvasProvider = ({ ...props }: { children: React.ReactNode }) => {
+export const CanvasProvider = ({
+  ...props
+}: {
+  children: React.ReactNode
+  camera: THREE.PerspectiveCamera
+}) => {
   const [cameraParams, setCameraParams] = useState({
     windowHeight: 0,
     windowWidth: 0,
@@ -23,10 +28,7 @@ export const CanvasProvider = ({ ...props }: { children: React.ReactNode }) => {
       shadows
       gl={{ localClippingEnabled: true }}
       dpr={[1, 1.5]}
-      camera={{
-        position: [0, 5, -25 / 2],
-        fov: FOV,
-      }}
+      camera={props.camera}
       style={{ width: '100vw', height: '100vh' }}
     >
       <axesHelper args={[5]} />
@@ -34,6 +36,7 @@ export const CanvasProvider = ({ ...props }: { children: React.ReactNode }) => {
       <pointLight position={[0, 0, 0]} />
       {/* Control the movement of the camera with mouse interaction */}
       <OrbitControls attach='orbitControls' autoRotate enableZoom={false} />
+      {/* <OrbitControls attach='orbitControls' enableZoom={false} /> */}
       <color attach='background' args={['#fff']} />
       {/* <fog attach="fog" args={["#fff", 5, 20]} /> */}
       {/* To make sure all the required engines are loaded before te calculation */}

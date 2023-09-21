@@ -1,28 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Attacker } from '@/components/atoms/Attacker'
+import type { AttackerParam } from '@/components/atoms/Attacker/Attacker'
 
 import type { Vector3ObjectBall } from '@/types/BallTypes'
-import type { User } from '@/types/User'
 
 export type AttackersProps = {
-  users: Array<User>
+  attackerParams: Array<AttackerParam>
   setBalls: React.Dispatch<React.SetStateAction<Array<Vector3ObjectBall>>>
 }
 
 export const Attackers = ({ ...props }: AttackersProps) => {
-  const [users, setUsers] = useState(props.users)
-  const LASER_COLORS = ['#89d3f0', '#f7fdab', '#f693f1', '#abf0bf', '#c29cff']
+  // const [attackers, setUsers] = useState(props.attackerParams)
 
   const MemoAttacker = React.memo(Attacker)
   return (
     <>
-      {users.map((user, key) => (
+      {props.attackerParams.map((attacker, key) => (
         <MemoAttacker
-          key={user.id}
-          color={LASER_COLORS[user.id] || '#89d3f0'}
-          position={user.positionGetter(innerWidth, innerHeight)}
-          setUsers={setUsers}
+          key={key}
+          color={attacker.color}
+          // color={'#89d3f0'}
+          position={attacker.position}
+          scoreSender={attacker.scoreSender}
           setBalls={props.setBalls}
         />
       ))}

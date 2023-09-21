@@ -16,5 +16,12 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: { users: [] },
+  play: async ({ canvasElement }) => {},
+  args: {
+    users: [],
+    camera: null,
+    setCamera: () => {},
+    attackerParams: [],
+    setTargets: () => {},
+  },
 }

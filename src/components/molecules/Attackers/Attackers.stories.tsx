@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 import { CanvasProvider } from '@/utils/canvasProvider'
 
 import { Attackers } from './Attackers'
@@ -20,36 +22,18 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    users: [
+    attackerParams: [
       {
         id: 1,
-        name: 'test1',
-        positionGetter: (width: number, height: number) => {
-          return {
-            x: 0,
-            y: 0,
-          }
-        },
-        peerId: 'sdfnoifsdf',
-        iconColor: 'red',
-      },
-      {
-        id: 2,
-        name: 'test2',
-        positionGetter: (width: number, height: number) => {
-          return {
-            x: 3,
-            y: 0,
-          }
-        },
-        peerId: 'sadfadfoih',
-        iconColor: 'green',
+        color: '#fff',
+        position: { x: 0, y: 0, z: 0 },
+        scoreSender: () => {},
       },
     ],
   },
   decorators: [
     (Story) => (
-      <CanvasProvider>
+      <CanvasProvider camera={new THREE.PerspectiveCamera()}>
         <Story />
       </CanvasProvider>
     ),

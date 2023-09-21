@@ -3,31 +3,46 @@ import { RapierRigidBody, RigidBody, type Vector3Object } from '@react-three/rap
 import { useRef, useEffect, type Dispatch, type SetStateAction } from 'react'
 
 import type { Vector3ObjectBall } from '@/types/BallTypes'
-import type { XY } from '@/types/User'
-import type { User } from '@/types/User'
+
+export type AttackerParam = {
+  id: number
+  color: string
+  position: Vector3Object
+  scoreSender: (score: number | null) => void
+}
+
 export type AttackerProps = {
   key: number
   color: string
-  position: XY
-  setUsers: Dispatch<SetStateAction<User[]>>
+  position: Vector3Object
+  // position: XY
+  // setUsers: Dispatch<SetStateAction<User[]>>
+  scoreSender: (score: number | null) => void
   setBalls: Dispatch<SetStateAction<Array<Vector3ObjectBall>>>
 }
 
 export const Attacker = ({ ...props }: AttackerProps) => {
   const rb = useRef<RapierRigidBody>(null)
 
-  const restartBall = () => {
-    rb.current?.setTranslation({ x: 0, y: 0, z: 5 }, true) // position to the target
-    rb.current?.setLinvel({ x: 0, y: 10, z: -14 }, true) // liner velocity... NEED TO BE FIXED!
-  }
   useEffect(() => {
+    console.log('restartBall')
+
+    const restartBall = () => {
+      console.log(props.position.x, props.position.y)
+
+      // rb.current?.setTranslation(
+      //   { x: props.position.x, y: props.position.y, z: 25 / 2 },
+      //   true,
+      // ) // position to the target
+      // rb.current?.setLinvel({ x: 0, y: 10, z: -14 }, true) // liner velocity... NEED TO BE FIXED!
+    }
     restartBall()
-  })
+  }, [props.position.x, props.position.y])
 
   return (
     <RigidBody
       ref={rb}
-      position={[props.position.x, props.position.y, 0]}
+      position={[props.position.x, props.position.y, -25 / 2]}
       colliders='ball'
       name={`attacker-${props.key}`}
       onCollisionEnter={({ manifold, target, other }) => {
@@ -49,14 +64,20 @@ export const Attacker = ({ ...props }: AttackerProps) => {
           props.setBalls((prev) =>
             prev.filter((ball) => `target-${ball.id}` !== other.rigidBodyObject!.name),
           )
-          target.rigidBodyObject.clear() // self
-          other.rigidBodyObject.clear() // other
+          target.rigidBodyObject.clear()
+          other.rigidBodyObject.clear()
+          props.scoreSender(100)
+          // props.setUsers((prev) =>
+          //   prev.filter(
+          //     (user) => user.positionGetter(innerWidth, innerHeight) !== props.position,
+          //   ),
+          // )
         }
       }}
       key={props.key}
     >
       <Sphere
-        position={[props.position.x, props.position.y, 0]}
+        position={[props.position.x, props.position.y, 5]}
         args={[0.45, 32, 32]}
         rotation={[-Math.PI / 2, 0, 0]}
       >
