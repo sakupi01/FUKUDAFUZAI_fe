@@ -1,0 +1,1 @@
+export { WaitCard } from './WaitCard'

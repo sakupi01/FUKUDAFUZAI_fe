@@ -1,0 +1,1 @@
+export { WaitingComponent } from './WaitingComponent'
