@@ -8,6 +8,12 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    nextjs: {
+      appDirectory: true,
+    },
+    navigation: {
+      pathname: '/',
+    },
   },
   argTypes: {},
 } satisfies Meta<typeof TheEndOfTheGame>
