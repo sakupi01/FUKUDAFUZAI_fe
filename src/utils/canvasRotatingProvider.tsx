@@ -1,9 +1,10 @@
 'use client'
+import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/rapier'
 import { Suspense, useEffect, useState } from 'react'
 
-export const CanvasProvider = ({
+export const CanvasRotatingProvider = ({
   ...props
 }: {
   children: React.ReactNode
@@ -27,20 +28,17 @@ export const CanvasProvider = ({
       shadows
       gl={{ localClippingEnabled: true }}
       dpr={[1, 1.5]}
-      camera={props.camera}
+      camera={{
+        position: [0, 5, 10],
+        fov: FOV,
+      }}
       style={{ width: '100vw', height: '100vh' }}
     >
-      {/* <axesHelper args={[5]} /> */}
       <ambientLight />
       <pointLight position={[0, 0, 0]} />
-      {/* Control the movement of the camera with mouse interaction */}
-      {/* <OrbitControls attach='orbitControls' autoRotate /> */}
-      {/* <OrbitControls attach='orbitControls' enableZoom={false} /> */}
+      <OrbitControls attach='orbitControls' autoRotate />
       <color attach='background' args={['#fff']} />
-      {/* <fog attach="fog" args={["#fff", 5, 20]} /> */}
-      {/* To make sure all the required engines are loaded before te calculation */}
       <Suspense>
-        {/* the root component of your physics world. Needs to be wrapped in <Suspense /> */}
         <Physics
           interpolate={true}
           maxVelocityIterations={1}

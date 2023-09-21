@@ -6,7 +6,7 @@ import useInterval from '@/utils/hooks/useInterval'
 import { css } from 'styled-system/css'
 
 export const Timer = () => {
-  const [time, setTime] = useState(10)
+  const [time, setTime] = useState(60)
   const router = useRouter()
   const onUpdate = () => {
     setTime((prev) => prev - 1)

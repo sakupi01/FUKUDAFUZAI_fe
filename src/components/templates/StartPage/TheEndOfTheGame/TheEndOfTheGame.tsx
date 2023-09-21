@@ -7,18 +7,17 @@ import { Font } from '@/components/atoms/Font'
 import { CanvasRotatingProvider } from '@/utils/canvasRotatingProvider'
 import { css } from 'styled-system/css'
 
-import { Button } from '../../atoms/Button/Button'
+import { Button } from '../../../atoms/Button/Button'
 
-export const StartPage = () => {
+export const TheEndOfTheGame = () => {
   const router = useRouter()
-
   return (
     <>
       <CanvasRotatingProvider camera={new THREE.PerspectiveCamera()}>
-        <Font label='Wii-Shoot' />
+        <Font label='Finished!' />
       </CanvasRotatingProvider>
       <div className={css({ position: 'absolute', bottom: '10%', left: '45%' })}>
-        <Button label='Start' onClick={() => router.push('/laser')} />
+        <Button label='Play Again' onClick={() => router.push('/')} />
       </div>
     </>
   )
