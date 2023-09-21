@@ -31,19 +31,18 @@ export const CanvasProvider = ({
       camera={props.camera}
       style={{ width: '100vw', height: '100vh' }}
     >
-      <axesHelper args={[5]} />
+      {/* <axesHelper args={[5]} /> */}
       <ambientLight />
       <pointLight position={[0, 0, 0]} />
       {/* Control the movement of the camera with mouse interaction */}
-      <OrbitControls attach='orbitControls' autoRotate enableZoom={false} />
-      {/* <OrbitControls attach='orbitControls' enableZoom={false} /> */}
+      {/* <OrbitControls attach='orbitControls' autoRotate enableZoom={false} /> */}
+      <OrbitControls attach='orbitControls' enableZoom={false} />
       <color attach='background' args={['#fff']} />
       {/* <fog attach="fog" args={["#fff", 5, 20]} /> */}
       {/* To make sure all the required engines are loaded before te calculation */}
       <Suspense>
         {/* the root component of your physics world. Needs to be wrapped in <Suspense /> */}
         <Physics
-          debug
           interpolate={true}
           maxVelocityIterations={1}
           maxVelocityFrictionIterations={2}
