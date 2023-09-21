@@ -8,6 +8,12 @@ const meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    nextjs: {
+      appDirectory: true,
+    },
+    navigation: {
+      pathname: '/laser',
+    },
   },
   argTypes: {},
 } satisfies Meta<typeof StartPage>
