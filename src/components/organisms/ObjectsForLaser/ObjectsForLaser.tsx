@@ -25,6 +25,7 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
           color={attackerParam.color}
           position={attackerParam.position}
           scoreSender={attackerParam.scoreSender}
+          charge={attackerParam.charge}
         />
       ))}
       <ThreeDBox />
