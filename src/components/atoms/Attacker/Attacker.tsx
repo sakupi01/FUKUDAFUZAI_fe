@@ -1,6 +1,8 @@
 import { Sphere } from '@react-three/drei'
 import { RapierRigidBody, RigidBody, type Vector3Object } from '@react-three/rapier'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, type Dispatch, type SetStateAction } from 'react'
+
+import type { Vector3ObjectBall } from '@/types/BallTypes'
 
 export type AttackerParam = {
   id: number
@@ -16,6 +18,7 @@ export type AttackerProps = {
   // position: XY
   // setUsers: Dispatch<SetStateAction<User[]>>
   scoreSender: (score: number | null) => void
+  setBalls: Dispatch<SetStateAction<Array<Vector3ObjectBall>>>
 }
 
 export const Attacker = ({ ...props }: AttackerProps) => {
@@ -41,7 +44,7 @@ export const Attacker = ({ ...props }: AttackerProps) => {
       ref={rb}
       position={[props.position.x, props.position.y, -25 / 2]}
       colliders='ball'
-      name='Attacker'
+      name={`attacker-${props.key}`}
       onCollisionEnter={({ manifold, target, other }) => {
         console.log(
           'Collision at world position ',
@@ -57,6 +60,9 @@ export const Attacker = ({ ...props }: AttackerProps) => {
             ' collided with ',
             // the other rigid body's Object3D
             other.rigidBodyObject.name,
+          )
+          props.setBalls((prev) =>
+            prev.filter((ball) => `target-${ball.id}` !== other.rigidBodyObject!.name),
           )
           target.rigidBodyObject.clear()
           other.rigidBodyObject.clear()

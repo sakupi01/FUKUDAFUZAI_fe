@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Attacker, type AttackerParam } from '@/components/atoms/Attacker/Attacker'
+import { Attacker } from '@/components/atoms/Attacker'
+import type { AttackerParam } from '@/components/atoms/Attacker/Attacker'
 import { ThreeDBox } from '@/components/atoms/ThreeDBox'
 import { HitMaterials } from '@/components/molecules/HitMaterials'
 
 import type { Vector3ObjectBall } from '@/types/BallTypes'
 import type { User } from '@/types/User'
+
+import { randomObjectFactory } from '@/utils/randomObjFactory'
 
 export type ObjectForLaserProps = {
   users: User[]
@@ -14,6 +17,7 @@ export type ObjectForLaserProps = {
 }
 
 export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
+  const [balls, setBalls] = useState<Array<Vector3ObjectBall>>(randomObjectFactory())
   return (
     <>
       {/* {attckers && (
@@ -25,10 +29,11 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
           color={attackerParam.color}
           position={attackerParam.position}
           scoreSender={attackerParam.scoreSender}
+          setBalls={setBalls}
         />
       ))}
       <ThreeDBox />
-      <HitMaterials setTargets={props.setTargets} />
+      <HitMaterials balls={balls} setBalls={setBalls} />
       {/* {props.users.map((user) => (
         <Laser
           key={user.id}
