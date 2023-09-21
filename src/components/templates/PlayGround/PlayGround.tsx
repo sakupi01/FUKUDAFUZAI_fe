@@ -88,7 +88,7 @@ export const PlayGroundForLaserMaru = ({ ...props }: PlayGroundForLaserMaruProps
       <Suspense fallback='Loading...'>
         <Canvas shadows gl={{ localClippingEnabled: true }} dpr={[1, 1.5]}>
           <StrictMode>
-            <Physics debug interpolate={true}>
+            <Physics interpolate={true}>
               <directionalLight
                 castShadow
                 position={[10, 10, 10]}
