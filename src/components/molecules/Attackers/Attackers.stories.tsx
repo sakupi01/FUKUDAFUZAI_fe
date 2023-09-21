@@ -26,6 +26,7 @@ export const Default: Story = {
       {
         id: 1,
         color: '#fff',
+        charge: 0,
         position: { x: 0, y: 0, z: 0 },
         scoreSender: () => {},
       },
