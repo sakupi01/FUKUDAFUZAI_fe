@@ -30,6 +30,7 @@ export const ObjectsForLaser = ({ ...props }: ObjectForLaserProps) => {
           position={attackerParam.position}
           scoreSender={attackerParam.scoreSender}
           setBalls={setBalls}
+          charge={attackerParam.charge}
         />
       ))}
       <ThreeDBox />

@@ -46,7 +46,7 @@ export const CanvasProvider = ({
           interpolate={true}
           maxVelocityIterations={1}
           maxVelocityFrictionIterations={2}
-          gravity={[0, 0, 0]}
+          gravity={[0, -9.8, 0]}
         >
           {props.children}
         </Physics>
