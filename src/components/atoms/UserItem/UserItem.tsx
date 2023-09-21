@@ -32,7 +32,7 @@ export const UserItem: React.FC<UserItemProps> = ({
           minHeight: '35px',
           borderRadius: '50%',
         })}
-        style={{ backgroundColor: iconColor }}
+        style={{ backgroundColor: `#${iconColor}` }}
       ></div>
       <p
         className={css({

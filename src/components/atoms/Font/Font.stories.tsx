@@ -1,4 +1,6 @@
-import { within } from '@storybook/testing-library'
+import * as THREE from 'three'
+
+import { CanvasProvider } from '@/utils/canvasProvider'
 
 import { Font } from './Font'
 
@@ -18,7 +20,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
+  args: {
+    label: 'Hello World',
   },
+  decorators: [
+    (Story) => (
+      <CanvasProvider camera={new THREE.PerspectiveCamera()}>
+        <Story />
+      </CanvasProvider>
+    ),
+  ],
 }

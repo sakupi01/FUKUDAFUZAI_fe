@@ -1,4 +1,5 @@
-import { redirect } from 'next/navigation'
+'use client'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import useInterval from '@/utils/hooks/useInterval'
@@ -6,12 +7,13 @@ import { css } from 'styled-system/css'
 
 export const Timer = () => {
   const [time, setTime] = useState(60)
+  const router = useRouter()
   const onUpdate = () => {
     setTime((prev) => prev - 1)
   }
   useInterval(onUpdate, 1 * 1000)
   if (time == 0) {
-    redirect('/finish')
+    router.push(`/finish`)
   }
   return (
     <>

@@ -1,5 +1,3 @@
-import { within } from '@storybook/testing-library'
-
 import { WaitingComponent } from './WaitingComponent'
 
 import type { Meta, StoryObj } from '@storybook/react'
@@ -19,9 +17,6 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
-  },
   args: {
     users: [],
     id: null,

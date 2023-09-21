@@ -1,5 +1,3 @@
-import { within } from '@storybook/testing-library'
-
 import { PlayGroundForLaser } from './PlayGroundForLaser'
 
 import type { Meta, StoryObj } from '@storybook/react'
@@ -18,8 +16,12 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement)
+  play: async ({ canvasElement }) => {},
+  args: {
+    users: [],
+    camera: null,
+    setCamera: () => {},
+    attackerParams: [],
+    setTargets: () => {},
   },
-  args: { users: [] },
 }

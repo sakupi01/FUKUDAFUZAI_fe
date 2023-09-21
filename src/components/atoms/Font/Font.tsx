@@ -1,6 +1,7 @@
+'use client'
 import { Center, Text3D } from '@react-three/drei'
 
-export const Font = () => {
+export const Font = ({ label }: { label: string }) => {
   return (
     <Center rotation={[-0.5, -0.25, 0]}>
       <Text3D
@@ -14,7 +15,7 @@ export const Font = () => {
         size={1.5}
         font='/font.json'
       >
-        {`Lang-\nPong`}
+        {label}
         <meshNormalMaterial />
       </Text3D>
     </Center>

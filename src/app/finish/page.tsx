@@ -1,5 +1,5 @@
-import { TheEndOfTheGame } from '@/components/templates/TheEndOfTheGame'
+import { TheEndOfTheGame } from '@/components/templates/StartPage/TheEndOfTheGame'
 
-export default function Home() {
+export default function Finish() {
   return <TheEndOfTheGame />
 }

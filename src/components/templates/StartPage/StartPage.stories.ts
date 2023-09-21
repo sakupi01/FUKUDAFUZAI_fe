@@ -1,22 +1,22 @@
-import { Timer } from './Timer'
+import { StartPage } from './StartPage'
 
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
-  title: 'Timer',
-  component: Timer,
+  title: 'StartPage',
+  component: StartPage,
   tags: ['autodocs'],
   parameters: {
+    layout: 'fullscreen',
     nextjs: {
       appDirectory: true,
     },
     navigation: {
-      pathname: '/finish',
+      pathname: '/laser',
     },
-    layout: 'fullscreen',
   },
   argTypes: {},
-} satisfies Meta<typeof Timer>
+} satisfies Meta<typeof StartPage>
 
 export default meta
 type Story = StoryObj<typeof meta>

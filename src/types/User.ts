@@ -7,6 +7,6 @@ export type User = {
   id: number
   name: string
   peerId: string
-  pointer: XY
+  positionGetter: (width: number, height: number) => XY
   iconColor: string
 }
