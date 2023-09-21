@@ -23,8 +23,8 @@ export const PlayGroundForLaser = ({ ...props }: PlayGroundForLaserProps) => {
   useEffect(() => {
     const distance = 800
     const FOV = (2 * Math.atan(innerHeight / (2 * distance)) * 180) / Math.PI
-    const c = new THREE.PerspectiveCamera(FOV, innerWidth / innerHeight)
-    c.position.set(0, 5, -25 / 2)
+    const c = new THREE.PerspectiveCamera(FOV, innerWidth / innerHeight, 0.1, 40)
+    c.position.set(0, 0, -25 / 2)
     c.lookAt(0, 0, 0)
     props.setCamera(c)
     // eslint-disable-next-line react-hooks/exhaustive-deps
