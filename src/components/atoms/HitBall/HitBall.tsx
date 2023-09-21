@@ -28,7 +28,7 @@ export function HitBall(props: {
       type={'fixed'}
       position={[props.ball.x, props.ball.y, props.ball.z]}
       colliders='ball'
-      name='Ball'
+      name={`target-${props.ball.id}`}
     >
       <Sphere
         position={[props.ball.x, props.ball.y, props.ball.z]}

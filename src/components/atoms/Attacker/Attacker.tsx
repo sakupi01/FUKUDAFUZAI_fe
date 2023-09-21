@@ -2,6 +2,7 @@ import { Sphere } from '@react-three/drei'
 import { RapierRigidBody, RigidBody, type Vector3Object } from '@react-three/rapier'
 import { useRef, useEffect, type Dispatch, type SetStateAction } from 'react'
 
+import type { Vector3ObjectBall } from '@/types/BallTypes'
 import type { XY } from '@/types/User'
 import type { User } from '@/types/User'
 export type AttackerProps = {
@@ -9,13 +10,14 @@ export type AttackerProps = {
   color: string
   position: XY
   setUsers: Dispatch<SetStateAction<User[]>>
+  setBalls: Dispatch<SetStateAction<Array<Vector3ObjectBall>>>
 }
 
 export const Attacker = ({ ...props }: AttackerProps) => {
   const rb = useRef<RapierRigidBody>(null)
 
   const restartBall = () => {
-    rb.current?.setTranslation({ x: -5, y: 0, z: 0 }, true) // position to the target
+    rb.current?.setTranslation({ x: 0, y: 0, z: 5 }, true) // position to the target
     rb.current?.setLinvel({ x: 0, y: 10, z: -14 }, true) // liner velocity... NEED TO BE FIXED!
   }
   useEffect(() => {
@@ -27,7 +29,7 @@ export const Attacker = ({ ...props }: AttackerProps) => {
       ref={rb}
       position={[props.position.x, props.position.y, 0]}
       colliders='ball'
-      name='Attacker'
+      name={`attacker-${props.key}`}
       onCollisionEnter={({ manifold, target, other }) => {
         console.log(
           'Collision at world position ',
@@ -44,13 +46,11 @@ export const Attacker = ({ ...props }: AttackerProps) => {
             // the other rigid body's Object3D
             other.rigidBodyObject.name,
           )
-          target.rigidBodyObject.clear()
-          other.rigidBodyObject.clear()
-          props.setUsers((prev) =>
-            prev.filter(
-              (user) => user.positionGetter(innerWidth, innerHeight) !== props.position,
-            ),
+          props.setBalls((prev) =>
+            prev.filter((ball) => `target-${ball.id}` !== other.rigidBodyObject!.name),
           )
+          target.rigidBodyObject.clear() // self
+          other.rigidBodyObject.clear() // other
         }
       }}
       key={props.key}

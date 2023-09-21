@@ -9,21 +9,25 @@ export function randomObjectFactory(): Array<Vector3ObjectBall> {
     time: 4,
     color: '#a492f9',
     point: 1,
+    isDeleted: false,
   }
   const YellowBall: BallProps = {
     time: 3,
     color: '#77ff7e',
     point: 2,
+    isDeleted: false,
   }
   const GreenBall: BallProps = {
     time: 2,
     color: '#fff377',
     point: 3,
+    isDeleted: false,
   }
   const BlackBall: BallProps = {
     time: 1,
     color: '#fe3972',
     point: 4,
+    isDeleted: false,
   }
   const ballArr = [RedBall, YellowBall, GreenBall, BlackBall]
   const randomCount = 1 // ランダムな個数（1から5個）
@@ -40,12 +44,13 @@ export function randomObjectFactory(): Array<Vector3ObjectBall> {
       x: randomX,
       y: randomY,
       z: randomZ,
+      id: objects.length,
       time: randomBall.time,
       color: randomBall.color,
       point: randomBall.point,
+      isDeleted: randomBall.isDeleted,
     }
     objects.push(object)
-    console.log(objects)
   }
   return objects
 }

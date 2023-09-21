@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 
 import { Attacker } from '@/components/atoms/Attacker'
 
+import type { Vector3ObjectBall } from '@/types/BallTypes'
 import type { User } from '@/types/User'
 
 export type AttackersProps = {
   users: Array<User>
+  setBalls: React.Dispatch<React.SetStateAction<Array<Vector3ObjectBall>>>
 }
 
 export const Attackers = ({ ...props }: AttackersProps) => {
@@ -21,6 +23,7 @@ export const Attackers = ({ ...props }: AttackersProps) => {
           color={LASER_COLORS[user.id] || '#89d3f0'}
           position={user.positionGetter(innerWidth, innerHeight)}
           setUsers={setUsers}
+          setBalls={props.setBalls}
         />
       ))}
     </>
