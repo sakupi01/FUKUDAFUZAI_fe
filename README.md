@@ -1,6 +1,6 @@
 ## For all
 
-🏓 [Product](https://kouguiita.vercel.app/)
+☄️ [Wii-Shoot](https://fukudafuzai-fe.vercel.app/)
 
 🎨 [Storybook](https://650666b06a8a37c1b25cff56-lserptalwk.chromatic.com/?path=/docs/configure-your-project--docs)
 
