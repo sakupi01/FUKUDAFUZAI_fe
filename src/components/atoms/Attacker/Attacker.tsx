@@ -61,14 +61,17 @@ export const Attacker = ({ ...props }: AttackerProps) => {
           props.setBalls((prev) =>
             prev.filter((ball) => `target-${ball.id}` !== other.rigidBodyObject!.name),
           )
+
+          // don't delete if the prefix of the name of target.rigidBodyObject and other.rigidBodyObject are same
+          if (
+            target.rigidBodyObject.name.split('-')[0] ===
+            other.rigidBodyObject.name.split('-')[0]
+          )
+            return
+
           target.rigidBodyObject.clear()
           other.rigidBodyObject.clear()
           props.scoreSender(100)
-          // props.setUsers((prev) =>
-          //   prev.filter(
-          //     (user) => user.positionGetter(innerWidth, innerHeight) !== props.position,
-          //   ),
-          // )
         }
       }}
       key={props.key}

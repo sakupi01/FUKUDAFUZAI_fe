@@ -35,8 +35,8 @@ export const CanvasProvider = ({
       <ambientLight />
       <pointLight position={[0, 0, 0]} />
       {/* Control the movement of the camera with mouse interaction */}
-      {/* <OrbitControls attach='orbitControls' autoRotate enableZoom={false} /> */}
-      <OrbitControls attach='orbitControls' enableZoom={false} />
+      <OrbitControls attach='orbitControls' autoRotate enableZoom={false} />
+      {/* <OrbitControls attach='orbitControls' enableZoom={false} /> */}
       <color attach='background' args={['#fff']} />
       {/* <fog attach="fog" args={["#fff", 5, 20]} /> */}
       {/* To make sure all the required engines are loaded before te calculation */}

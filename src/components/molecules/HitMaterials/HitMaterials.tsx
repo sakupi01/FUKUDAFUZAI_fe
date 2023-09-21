@@ -16,6 +16,7 @@ export const HitMaterials = ({ balls, setBalls }: HitMaterialsProps) => {
     const interval = setInterval(() => {
       setBalls((prev) => prev.concat(randomObjectFactory()))
     }, 5000)
+    console.log(balls)
     return () => clearInterval(interval)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -24,7 +25,7 @@ export const HitMaterials = ({ balls, setBalls }: HitMaterialsProps) => {
   return (
     <>
       {balls.map((ball, key) => {
-        ball.isDeleted && (
+        !ball.isDeleted && (
           <MemoHitBall ball={ball} balls={balls} setBalls={setBalls} key={key} />
         )
       })}
