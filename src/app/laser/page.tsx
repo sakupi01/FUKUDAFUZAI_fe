@@ -127,11 +127,18 @@ export default function Laser() {
                 prev.position,
                 pos.sub(prev.position).normalize(),
               )
+              const charge = shoot.charge
+              console.log('charge')
+              console.log(charge)
               console.log(pos)
               setAttackerParams((prev) => {
                 const attackerParam: AttackerParam = {
                   id: prev.length + 1,
                   color: `#${colors[shoot.id - 1]}`,
+                  // color: LASER_COLORS[shoot.id - 1]!,
+                  // position: new THREE.Vector3(pos.x, pos.y, pos.z + 15),
+                  // position: new THREE.Vector3(v.x, v.y, 0),
+                  charge: charge,
                   position: new THREE.Vector3(x * -8, y * 5, 0),
 
                   scoreSender: (score) => {

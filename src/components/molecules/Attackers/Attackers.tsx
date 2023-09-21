@@ -21,6 +21,7 @@ export const Attackers = ({ ...props }: AttackersProps) => {
           key={key}
           color={attacker.color}
           // color={'#89d3f0'}
+          charge={attacker.charge}
           position={attacker.position}
           scoreSender={attacker.scoreSender}
           setBalls={props.setBalls}
