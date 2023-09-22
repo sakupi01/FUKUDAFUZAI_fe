@@ -2,7 +2,7 @@
 
 ☄️ [Wii-Shoot](https://fukudafuzai-fe.vercel.app/)
 
-🎨 [Storybook](https://650666b06a8a37c1b25cff56-lserptalwk.chromatic.com/?path=/docs/configure-your-project--docs)
+🎨 [Storybook](https://650666b06a8a37c1b25cff56-ouqoovvzeq.chromatic.com/)
 
 📝 If you're an access-granted contributor, you got permission to access [Chromatic](https://www.chromatic.com/builds?appId=650666b06a8a37c1b25cff56) as well.
 
